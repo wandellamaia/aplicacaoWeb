@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {makeStyles, Grid, TextField, Link, Typography,Button} from '@material-ui/core';
 
-// import { Alert } from '@material-ui/lab';
 
 import PasswordField from './PasswordField';
 import ButtonCheckbox from './ButtonCheckbox';
@@ -80,15 +79,33 @@ export default function LoginPage(props) {
                             <Grid item xs >
                                 <form>
                                     <Grid style={{marginTop: 15}}>
-                                        <TextField className={classes.textField} required id="standard-required" label="Email" onBlur={(e)=> {onEmail(e.target.value)}} />
-                                        <ErrorMessage title="Email incorreto" show={!validateEmail}/>
+                                        <TextField 
+                                            className={classes.textField}
+                                            required id="standard-required" 
+                                            label="Email" 
+                                            onBlur={(e)=> {onEmail(e.target.value)}}
+                                        />
+                                        <ErrorMessage 
+                                            title="Email incorreto" 
+                                            show={!validateEmail}
+                                        />
                                     </Grid>
                                     <Grid style={{marginTop: 15}}>
                                     </Grid>
-                                        <PasswordField onShowPassword={() => setShowPassword(!showPassword)} onPassword={(valuePassword) => setPassword(valuePassword)} password={password} showPassword={showPassword}/>
-                                        <ErrorMessage title="Email e senha incorretos" show={showMessage}/>
+                                        <PasswordField 
+                                            onShowPassword={() => setShowPassword(!showPassword)} 
+                                            onPassword={(valuePassword) => setPassword(valuePassword)} 
+                                            password={password} 
+                                            showPassword={showPassword}/>
+                                        <ErrorMessage 
+                                            title="Email e senha incorretos"
+                                            show={showMessage}
+                                        />
                                         <Grid style={{marginTop: 15}}>
-                                        <ButtonCheckbox keepConected={keepConected} handleKeepConected={() => setKeepConected(!keepConected)}/>
+                                        <ButtonCheckbox 
+                                            keepConected={keepConected} 
+                                            handleKeepConected={() => setKeepConected(!keepConected)}
+                                        />
                                     </Grid>
                                 </form>
                             </Grid>
@@ -101,7 +118,11 @@ export default function LoginPage(props) {
                                 >
                                     <span>Entrar</span>
                                 </Button>
-                                {loginSuccess && (<SuccessMessage message="Você está conectado." keepConected={keepConected}/>)}
+                                {loginSuccess &&
+                                    (<SuccessMessage message="Você está conectado." 
+                                    keepConected={keepConected}
+                                    />)
+                                }
                             </Grid>
                             <Grid item className={classes.buttonWrapper}>
                                 <Button className={classes.buttonRoot} variant="outlined">
