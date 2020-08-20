@@ -46,44 +46,26 @@ const useStyles = makeStyles((theme) => ({
         color: Colors.IntermediateSecondary
     }
 }));
+
 export default function LoginPage(props) {
     const classes = useStyles();
-    const [values, setValues] = React.useState({
-        email: '',
-        password: '',
-    });
-    // const { state,  setState } = props;
-    //  const [state, setState] = React.useState({
-    //     checked: true,
-    // });
-    
-   
-    const [enabledButton, setEnabledButton] = React.useState(false);
+    const [password, setPassword] = React.useState('');
+    const [email, setEmail] = React.useState('');
+    const [showPassword, setShowPassword] = React.useState(false);
     const [validateEmail, setValidateEmail] = React.useState(false);
     const [showMessage, setShowMessage] = React.useState(false);
     const [loginSuccess, setloginSuccess] = React.useState(false);
     const [keepConected, setKeepConected] = React.useState(true);
 
-    const handleChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
-
-        setValidateEmail(utils.validateEmailAddress(values.email));
-        
-        if (values.email && values.password && validateEmail) {
-            setEnabledButton(true);
-        }
-    };
-
-    const handleKeepConected = (keepConected) => {
-        setKeepConected(!keepConected);
-    };
-
+    const onEmail = (props) => {
+        setValidateEmail(utils.validateEmailAddress(props));
+        setEmail(props);
+    }
+  
     const handleLoginButton = () => {
-        if (loginOperations.login(values.email, values.password)) {
+        if (loginOperations.login(email, password)) {
             setloginSuccess(true);
-            props.history.push("/Registro");
-        } else {
-            setShowMessage(true);
+            setTimeout(()=>{props.history.push("/Registro")},6000);
         }
     };
 
@@ -98,20 +80,25 @@ export default function LoginPage(props) {
                             <Grid item xs >
                                 <form>
                                     <Grid style={{marginTop: 15}}>
-                                        <TextField className={classes.textField} required id="standard-required" label="Email" onChange={handleChange('email')} />
-                                        <ErrorMessage title="Email incorreto" show={validateEmail}/>
+                                        <TextField className={classes.textField} required id="standard-required" label="Email" onBlur={(e)=> {onEmail(e.target.value)}} />
+                                        <ErrorMessage title="Email incorreto" show={!validateEmail}/>
                                     </Grid>
                                     <Grid style={{marginTop: 15}}>
                                     </Grid>
-                                        <PasswordField onChange={(password)=>{handleChange('password')({target: {value: password.password}})}}/>
+                                        <PasswordField onShowPassword={() => setShowPassword(!showPassword)} onPassword={(valuePassword) => setPassword(valuePassword)} password={password} showPassword={showPassword}/>
                                         <ErrorMessage title="Email e senha incorretos" show={showMessage}/>
                                         <Grid style={{marginTop: 15}}>
-                                        <ButtonCheckbox state={keepConected} setState={setKeepConected} onChange={handleKeepConected}/>
+                                        <ButtonCheckbox keepConected={keepConected} handleKeepConected={() => setKeepConected(!keepConected)}/>
                                     </Grid>
                                 </form>
                             </Grid>
                             <Grid item className={classes.buttonWrapper}>
-                                <Button variant="outlined" disabled={!enabledButton} className={classes.buttonRoot} onClick={handleLoginButton}>
+                                <Button 
+                                    variant="outlined" 
+                                    disabled={!(email&&password)} 
+                                    className={classes.buttonRoot} 
+                                    onClick={()=>handleLoginButton()}
+                                >
                                     <span>Entrar</span>
                                 </Button>
                                 {loginSuccess && (<SuccessMessage message="Você está conectado." keepConected={keepConected}/>)}

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {Input, IconButton, InputLabel, InputAdornment, FormControl, Grid} from '@material-ui/core';
 
@@ -6,40 +7,25 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
   
 export default function PasswordField (props) {
-    const [values, setValues] = React.useState({
-        password: '',
-        showPassword: false,
-      });
-
-      const handleChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
-        props.onChange(values);//Vem do meu componente
-      };
-    
-      const handleClickShowPassword = () => {
-        setValues({ ...values, showPassword: !values.showPassword });
-      };
-    
-      const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-      };
+    const {onShowPassword, showPassword, onPassword, password} = props;
+      
     return (
         <Grid item>
         <FormControl>
           <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
           <Input
             id="standard-adornment-password"
-            type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
+            type={showPassword ? 'text' : 'password'}
+            value={password}
+            onChange={(e)=> onPassword(e.target.value)}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
                   aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
+                  onClick={onShowPassword}
+                  onMouseDown={onShowPassword}
                 >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
             }
@@ -47,4 +33,10 @@ export default function PasswordField (props) {
         </FormControl>
         </Grid>
     );
+};
+PasswordField.propType = {
+  onShowPassword: PropTypes.func.isRequired,
+  showPassword: PropTypes.bool.isRequired,
+  onPassword: PropTypes.func.isRequired,
+  password: PropTypes.string.isRequired,
 };

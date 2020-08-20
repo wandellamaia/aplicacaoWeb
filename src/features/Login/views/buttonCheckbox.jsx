@@ -5,23 +5,15 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
 export default function ButtonCheckbox (props) {
-    const [state, setState] = React.useState({
-        checked: true,
-    });
-    //const { state,  handleChange } = props;
-      const handleChange = (event) => {
-        setState({ ...state, [event.target.name]: event.target.checked });
-        props.onChange(event.target.checked);//Passa para o pai
-        console.log('Estado -> ',state);
-      };
+    const {keepConected, handleKeepConected} = props;
     
     return ( 
             <FormGroup>
                 <FormControlLabel
                 control={
                     <Checkbox
-                    checked={state.checked}
-                    onChange={handleChange}
+                    checked={keepConected}
+                    onChange={handleKeepConected}
                     name="checked"
                     color='default'
                     />
@@ -32,6 +24,6 @@ export default function ButtonCheckbox (props) {
     );
 };
 ButtonCheckbox.propType = {
-  state: PropTypes.bool.isRequired,
-  setState: PropTypes.func.isRequired
-};
+    keepConected: PropTypes.bool.isRequired,
+    handleKeepConected: PropTypes.func.isRequired,
+}
