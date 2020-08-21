@@ -1,18 +1,19 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import {makeStyles, Grid, TextField, Link, Typography,Button} from '@material-ui/core';
 
 
 import PasswordField from './PasswordField';
 import ButtonCheckbox from './ButtonCheckbox';
+import SuccessMessage from './SuccessMessage';
+import LoginBox from './LoginBox';
 
 import Layout from '../../../shared/components/Layout';
 import Colors from '../../../shared/styles/Colors';
 import * as loginOperations from '../loginOperation';
 import ErrorMessage from '../../../shared/components/ErrorMessage';
-import LoginBox from './LoginBox';
+
 import * as utils from '../../../shared/utils';
-import SuccessMessage from './SuccessMessage';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginPage(props) {
     const classes = useStyles();
+
     const [password, setPassword] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [showPassword, setShowPassword] = React.useState(false);
@@ -65,6 +67,8 @@ export default function LoginPage(props) {
         if (loginOperations.login(email, password)) {
             setloginSuccess(true);
             setTimeout(()=>{props.history.push("/Registro")},6000);
+        } else {
+            setShowMessage(true);
         }
     };
 
@@ -96,9 +100,10 @@ export default function LoginPage(props) {
                                             onShowPassword={() => setShowPassword(!showPassword)} 
                                             onPassword={(valuePassword) => setPassword(valuePassword)} 
                                             password={password} 
-                                            showPassword={showPassword}/>
+                                            showPassword={showPassword}
+                                        />
                                         <ErrorMessage 
-                                            title="Email e senha incorretos"
+                                            title="Email e/ou senha incorretos"
                                             show={showMessage}
                                         />
                                         <Grid style={{marginTop: 15}}>
