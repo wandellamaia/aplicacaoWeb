@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "dsznajder.es7-react-js-snippets",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "eamodio.gitlens",
+    "naumovs.color-highlight",
+    "gottfired.css2react",
+    "msjsdiag.debugger-for-chrome"
+  ]
+}
