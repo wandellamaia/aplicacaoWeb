@@ -3,8 +3,7 @@ import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 
-export default function CustomizedSnackbars(props) {
-  
+export default function CustomizedSnackbars({ message, keepConected }) {
   const [open, setOpen] = React.useState(true);
 
   const handleClose = (event, reason) => {
@@ -15,12 +14,12 @@ export default function CustomizedSnackbars(props) {
   };
 
   return (
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success">
-          <p>{props.message}</p>
-          <p>{props.keepConected && ('Manter conectado foi marcado.')}</p>
-        </Alert>
-      </Snackbar>
+    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+      <Alert onClose={handleClose} severity="success">
+        <p>{message}</p>
+        <p>{keepConected && 'Manter conectado foi marcado.'}</p>
+      </Alert>
+    </Snackbar>
   );
 }
 

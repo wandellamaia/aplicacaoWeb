@@ -17,6 +17,7 @@ import Layout from '../../../shared/components/Layout';
 import Colors from '../../../shared/styles/Colors';
 import * as loginOperations from '../loginOperation';
 import ErrorMessage from '../../../shared/components/ErrorMessage';
+import history from '../../../shared/history';
 
 import * as utils from '../../../shared/utils';
 
@@ -58,21 +59,22 @@ export default function LoginPage(props) {
   const [password, setPassword] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [showPassword, setShowPassword] = React.useState(false);
-  const [validateEmail, setValidateEmail] = React.useState(false);
+  const [validateEmail, setValidateEmail] = React.useState(true);
   const [showMessage, setShowMessage] = React.useState(false);
   const [loginSuccess, setloginSuccess] = React.useState(false);
   const [keepConected, setKeepConected] = React.useState(true);
 
-  const onEmail = (props) => {
-    setValidateEmail(utils.validateEmailAddress(props));
-    setEmail(props);
+  const onEmail = (inEmail) => {
+    setValidateEmail(utils.validateEmailAddress(inEmail));
+    setEmail(inEmail);
+    if (!inEmail) setValidateEmail(true);
   };
 
   const handleLoginButton = () => {
     if (loginOperations.login(email, password)) {
       setloginSuccess(true);
       setTimeout(() => {
-        props.history.push('/Registro');
+        history.push('/Registro');
       }, 6000);
     } else {
       setShowMessage(true);

@@ -1,10 +1,17 @@
 import React from 'react';
-import Routes from './routes';
+import { Router, Switch, Route } from 'react-router-dom';
 
-function App() {
+import Login from './features/Login/views/LoginPage';
+import Record from './features/Record/views/RecordPage';
+import history from './shared/history';
+
+export default function Routes() {
   return (
-      <Routes/>
+    <Router history={history}>
+      <Switch>
+        <Route path="/" exact component={Login} />
+        <Route path="/registro" component={Record} />
+      </Switch>
+    </Router>
   );
 }
-
-export default App;

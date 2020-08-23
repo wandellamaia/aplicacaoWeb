@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core';
 import Colors from '../styles/Colors';
 
@@ -23,12 +24,17 @@ const useStyles = makeStyles({
   },
 });
 const Layout = (props) => {
+  const { title } = props;
   const classes = useStyles();
   return (
     <header className={classes.mainHeader}>
-      <p className={classes.textHeader}>{props.title}</p>
+      <p className={classes.textHeader}>{title}</p>
     </header>
   );
+};
+
+Layout.propType = {
+  title: PropTypes.string.isRequired,
 };
 
 export default Layout;
