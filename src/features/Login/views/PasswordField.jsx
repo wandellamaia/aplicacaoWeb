@@ -41,7 +41,7 @@ export default function PasswordField(props) {
     </Grid>
   );
 }
-PasswordField.propType = {
+PasswordField.propTypes = {
   onShowPassword: PropTypes.func.isRequired,
   showPassword: PropTypes.bool.isRequired,
   onPassword: PropTypes.func.isRequired,

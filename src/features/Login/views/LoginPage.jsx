@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   makeStyles,
   Grid,
@@ -15,9 +16,8 @@ import LoginBox from './LoginBox';
 
 import Layout from '../../../shared/components/Layout';
 import Colors from '../../../shared/styles/Colors';
-import * as loginOperations from '../loginOperation';
+import * as login from '../control/loginOperation';
 import ErrorMessage from '../../../shared/components/ErrorMessage';
-import history from '../../../shared/history';
 
 import * as utils from '../../../shared/utils';
 
@@ -71,11 +71,9 @@ export default function LoginPage(props) {
   };
 
   const handleLoginButton = () => {
-    if (loginOperations.login(email, password)) {
+    if (login.login(email, password)) {
       setloginSuccess(true);
-      setTimeout(() => {
-        history.push('/Registro');
-      }, 6000);
+      setShowMessage(false);
     } else {
       setShowMessage(true);
     }
@@ -156,3 +154,9 @@ export default function LoginPage(props) {
     </>
   );
 }
+LoginPage.propType = {
+  onShowPassword: PropTypes.func.isRequired,
+  showPassword: PropTypes.bool.isRequired,
+  onPassword: PropTypes.func.isRequired,
+  password: PropTypes.string.isRequired,
+};

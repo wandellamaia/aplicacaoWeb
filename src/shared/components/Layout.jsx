@@ -33,7 +33,7 @@ const Layout = (props) => {
   );
 };
 
-Layout.propType = {
+Layout.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
