@@ -24,17 +24,19 @@ const useStyles = makeStyles({
   },
 });
 const Layout = (props) => {
-  const { title } = props;
+  const { children } = props;
   const classes = useStyles();
   return (
-    <header className={classes.mainHeader}>
-      <p className={classes.textHeader}>{title}</p>
-    </header>
+    <>
+      <header className={classes.mainHeader}>
+        <p className={classes.textHeader}>{children}</p>
+      </header>
+    </>
   );
 };
 
 Layout.propTypes = {
-  title: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
 };
 
 export default Layout;

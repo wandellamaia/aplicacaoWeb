@@ -81,7 +81,7 @@ export default function LoginPage(props) {
 
   return (
     <>
-      <Layout title="Meu diário" />
+      <Layout>Meu diário</Layout>
       <Grid container className={classes.root}>
         <Grid container direction="column" justify="center" alignItems="center">
           <Grid item className={classes.divExternal}>
@@ -126,7 +126,7 @@ export default function LoginPage(props) {
               <Grid item className={classes.buttonWrapper}>
                 <Button
                   variant="outlined"
-                  disabled={!(email && password)}
+                  disabled={!(email && password && validateEmail)}
                   className={classes.buttonRoot}
                   onClick={() => handleLoginButton()}
                 >
