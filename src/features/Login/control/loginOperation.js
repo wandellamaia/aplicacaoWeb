@@ -7,10 +7,10 @@ export const userExists = (email) => {
 
 export const login = (email, password) => {
   const user = userExists(email);
-  if (user.senha === password) {
+  if (user && user.senha === password) {
     setTimeout(() => {
       history.push('/Registro');
-    }, 6000);
+    }, 3000);
     return true;
   }
   return false;

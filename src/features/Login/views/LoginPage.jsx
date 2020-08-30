@@ -51,6 +51,15 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     color: Colors.IntermediateSecondary,
   },
+  textHeader: {
+    color: '#FFFFFF',
+    fontSize: '32px',
+    fontWeight: 800,
+    lineHeight: '1.5',
+    marginLeft: '30px',
+    marginTop: '10px',
+    fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
+  },
 }));
 
 export default function LoginPage(props) {
@@ -75,13 +84,16 @@ export default function LoginPage(props) {
       setloginSuccess(true);
       setShowMessage(false);
     } else {
+      console.log('Não há este login.');
       setShowMessage(true);
     }
   };
 
   return (
     <>
-      <Layout>Meu diário</Layout>
+      <Layout>
+        <p className={classes.textHeader}>Meu diário</p>
+      </Layout>
       <Grid container className={classes.root}>
         <Grid container direction="column" justify="center" alignItems="center">
           <Grid item className={classes.divExternal}>
