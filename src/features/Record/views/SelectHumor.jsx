@@ -18,11 +18,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ControlledOpenSelect() {
   const classes = useStyles();
-  const [age, setAge] = React.useState('');
+  const [humor, setHumor] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setHumor(event.target.value);
   };
 
   const handleClose = () => {
@@ -42,15 +42,21 @@ export default function ControlledOpenSelect() {
         open={open}
         onClose={handleClose}
         onOpen={handleOpen}
-        value={age}
+        value={humor}
         onChange={handleChange}
       >
-        <MenuItem value="">
-          <em>None</em>
+        <MenuItem value={10}>
+          <img alt="emoji3" src="triste.png" style={{ paddingRight: 5 }} />
+          Triste
         </MenuItem>
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+        <MenuItem value={20}>
+          <img alt="emoji2" src="feliz.png" style={{ paddingRight: 5 }} />
+          Feliz
+        </MenuItem>
+        <MenuItem value={30}>
+          <img alt="emoji1" src="neutro.png" style={{ paddingRight: 5 }} />
+          Indiferente
+        </MenuItem>
       </Select>
     </FormControl>
   );

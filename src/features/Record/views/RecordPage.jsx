@@ -9,6 +9,7 @@ import {
 import TextField from '@material-ui/core/TextField';
 
 import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
+import history from '../../../shared/history';
 import DescriptionCard from './DescriptionArea';
 import SelectHumor from './SelectHumor';
 import Layout from '../../../shared/components/Layout';
@@ -43,7 +44,11 @@ export default function RecordPage() {
           alignItems="center"
         >
           <Grid item>
-            <IconButton>
+            <IconButton
+              onClick={() => {
+                history.push('/Login');
+              }}
+            >
               <ArrowBackIosOutlinedIcon aria-label="delete" />
             </IconButton>
           </Grid>
@@ -89,7 +94,7 @@ export default function RecordPage() {
               alignItems="center"
             >
               <Grid item>
-                <img src="wakanda1.jpg" style={{ height: 100 }} />
+                <img alt="w1" src="wakanda1.jpg" style={{ height: 100 }} />
               </Grid>
               <Grid item>
                 <DescriptionCard />
