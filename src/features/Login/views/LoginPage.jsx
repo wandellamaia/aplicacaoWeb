@@ -85,7 +85,6 @@ export default function LoginPage(props) {
       setloginSuccess(true);
       setShowMessage(false);
     } else {
-      console.log('Não há este login.');
       setShowMessage(true);
     }
   };

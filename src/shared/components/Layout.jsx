@@ -5,8 +5,8 @@ import Colors from '../styles/Colors';
 
 const useStyles = makeStyles({
   mainHeader: {
-   // height: '64px',
-    background: Colors.IntermediatePrimary,
+    // height: '64px',
+    background: Colors.Primary,
     width: '100%',
     display: 'flex',
     flexWrap: 'wrap',

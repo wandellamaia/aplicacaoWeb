@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField';
 
 import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
 import history from '../../../shared/history';
-import DescriptionCard from './DescriptionArea';
+import DescriptionCard from './DescriptionCrad';
 import SelectHumor from './SelectHumor';
 import Layout from '../../../shared/components/Layout';
 import Colors from '../../../shared/styles/Colors';
@@ -46,7 +46,7 @@ export default function RecordPage() {
           <Grid item>
             <IconButton
               onClick={() => {
-                history.push('/Login');
+                history.push('/');
               }}
             >
               <ArrowBackIosOutlinedIcon aria-label="delete" />
@@ -64,19 +64,19 @@ export default function RecordPage() {
         justify="center"
         style={{
           paddingTop: 16,
-          background: Colors.IntermediateSecondary,
-          height: 566,
+          // height: 566,
+          height: '100vh',
         }}
       >
         <Grid item>
           <Card>
-            <Grid container item justify="center">
+            <Grid container item justify="center" style={{ paddingBottom: 16 }}>
               <Grid item style={{ marginRight: 100, marginLeft: 50 }}>
                 <TextField
                   id="datetime-local"
                   type="datetime-local"
                   defaultValue="2017-05-24T10:30"
-                  style={{ paddingTop: 24 }}
+                  style={{ paddingTop: 16 }}
                   className={classes.textField}
                   InputLabelProps={{
                     shrink: true,
