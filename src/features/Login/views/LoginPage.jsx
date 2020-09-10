@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '1.5',
     marginLeft: '30px',
     marginTop: '10px',
+    marginBottom: '0px',
     fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
   },
 }));

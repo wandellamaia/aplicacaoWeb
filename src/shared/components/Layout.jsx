@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Box } from '@material-ui/core';
 import Colors from '../styles/Colors';
 
 const useStyles = makeStyles({
   mainHeader: {
-    height: '64px',
+   // height: '64px',
     background: Colors.IntermediatePrimary,
     width: '100%',
     display: 'flex',
@@ -20,7 +20,7 @@ const Layout = (props) => {
   const classes = useStyles();
   return (
     <>
-      <header className={classes.mainHeader}>{children}</header>
+      <Box className={classes.mainHeader}>{children}</Box>
     </>
   );
 };

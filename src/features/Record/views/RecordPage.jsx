@@ -65,7 +65,7 @@ export default function RecordPage() {
         style={{
           paddingTop: 16,
           background: Colors.IntermediateSecondary,
-          height: 560,
+          height: 566,
         }}
       >
         <Grid item>
@@ -76,7 +76,7 @@ export default function RecordPage() {
                   id="datetime-local"
                   type="datetime-local"
                   defaultValue="2017-05-24T10:30"
-                  style={{ paddingTop: 16 }}
+                  style={{ paddingTop: 24 }}
                   className={classes.textField}
                   InputLabelProps={{
                     shrink: true,

@@ -51,27 +51,34 @@ export default function OutlinedCard() {
           className={classes.textField}
         />
       </Grid>
-      <Grid item style={{ alignSelf: 'flex-end' }}>
-        <CardActions>
-          <label htmlFor="icon-button-file">
-            <IconButton
-              color="primary"
-              aria-label="upload picture"
-              component="span"
+      <Grid container item justify="space-between">
+        <Grid item>
+          <CardActions>
+            <label htmlFor="icon-button-file">
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                component="span"
+              >
+                <PhotoCamera />
+              </IconButton>
+              máximo 3 imagens
+            </label>
+          </CardActions>
+        </Grid>
+        <Grid item>
+          <CardActions>
+            <Button
+              variant="contained"
+              color={Colors.Primary}
+              size="small"
+              className={classes.button}
+              startIcon={<SaveIcon />}
             >
-              <PhotoCamera />
-            </IconButton>
-          </label>
-          <Button
-            variant="contained"
-            color={Colors.Primary}
-            size="small"
-            className={classes.button}
-            startIcon={<SaveIcon />}
-          >
-            Save
-          </Button>
-        </CardActions>
+              Save
+            </Button>
+          </CardActions>
+        </Grid>
       </Grid>
     </Grid>
   );
