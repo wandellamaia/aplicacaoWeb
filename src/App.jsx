@@ -12,8 +12,8 @@ export default function Routes() {
       <CssBaseline />
       <Router history={history}>
         <Switch>
-          <Route path="/Login" component={Login} />
-          <Route path="/" exact component={Record} />
+          <Route path="/" exact component={Login} />
+          <Route path="/Registro" component={Record} />
         </Switch>
       </Router>
     </>

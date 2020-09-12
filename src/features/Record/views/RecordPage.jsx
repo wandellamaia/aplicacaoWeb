@@ -10,10 +10,11 @@ import TextField from '@material-ui/core/TextField';
 
 import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
 import history from '../../../shared/history';
-import DescriptionCard from './DescriptionCrad';
+import DescriptionCard from './DescriptionCard';
 import SelectHumor from './SelectHumor';
 import Layout from '../../../shared/components/Layout';
-import Colors from '../../../shared/styles/Colors';
+// import ShowPhotografy from './ShowPhotografy';
+import CarouselPhotos from './CarouselPhotos';
 
 const useStyles = makeStyles((theme) => ({
   textHeader: {
@@ -93,8 +94,13 @@ export default function RecordPage() {
               justify="center"
               alignItems="center"
             >
-              <Grid item>
-                <img alt="w1" src="wakanda1.jpg" style={{ height: 100 }} />
+              <Grid
+                item
+                style={{
+                  marginBottom: 50,
+                }}
+              >
+                <CarouselPhotos backgroundColor="grey" />
               </Grid>
               <Grid item>
                 <DescriptionCard />

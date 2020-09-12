@@ -4,7 +4,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-export default function ButtonCheckbox(props) {
+const ButtonCheckbox = (props) => {
   const { keepConected, handleKeepConected } = props;
 
   return (
@@ -22,8 +22,9 @@ export default function ButtonCheckbox(props) {
       />
     </FormGroup>
   );
-}
-ButtonCheckbox.propType = {
+};
+ButtonCheckbox.propTypes = {
   keepConected: PropTypes.bool.isRequired,
   handleKeepConected: PropTypes.func.isRequired,
 };
+export default ButtonCheckbox;

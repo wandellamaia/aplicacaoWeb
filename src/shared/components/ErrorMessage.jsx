@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 14,
     lineHeight: '20px',
     letterSpacing: 0.15,
-    color: Colors.Warm,
+    color: Colors.Alernative,
     marginBottom: 24,
   },
 }));

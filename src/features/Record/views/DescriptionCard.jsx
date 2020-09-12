@@ -9,12 +9,6 @@ import SaveIcon from '@material-ui/icons/Save';
 import Colors from '../../../shared/styles/Colors';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  content: {
-    flex: '1 0 auto',
-  },
   textField: {
     width: 430,
     // height: 'auto',

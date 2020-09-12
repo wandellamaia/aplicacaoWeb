@@ -6,7 +6,7 @@ import { makeStyles, Grid } from '@material-ui/core';
 import Colors from '../../../shared/styles/Colors';
 
 const useStyles = makeStyles((theme) => ({
-  div: {
+  extern: {
     borderBottomStyle: 'solid',
     borderColor: Colors.IntermediateSecondary,
     borderWidth: '1px',
@@ -26,7 +26,7 @@ export default function LoginPage({ title }) {
 
   return (
     <>
-      <Grid item className={classes.div}>
+      <Grid item className={classes.extern}>
         <Grid item xs>
           <p className={classes.pTitle}>{title}</p>
         </Grid>

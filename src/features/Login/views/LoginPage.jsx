@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   makeStyles,
   Grid,
@@ -63,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LoginPage(props) {
+const LoginPage = (props) => {
   const classes = useStyles();
 
   const [password, setPassword] = React.useState('');
@@ -165,10 +164,6 @@ export default function LoginPage(props) {
       </Grid>
     </>
   );
-}
-LoginPage.propType = {
-  onShowPassword: PropTypes.func.isRequired,
-  showPassword: PropTypes.bool.isRequired,
-  onPassword: PropTypes.func.isRequired,
-  password: PropTypes.string.isRequired,
 };
+
+export default LoginPage;
