@@ -13,7 +13,6 @@ import history from '../../../shared/history';
 import DescriptionCard from './DescriptionCard';
 import SelectHumor from './SelectHumor';
 import Layout from '../../../shared/components/Layout';
-// import ShowPhotografy from './ShowPhotografy';
 import CarouselPhotos from './CarouselPhotos';
 
 const useStyles = makeStyles((theme) => ({
@@ -37,7 +36,7 @@ export default function RecordPage() {
   const classes = useStyles();
   return (
     <>
-      <Layout>
+      <Layout position="static">
         <Grid
           container
           direction="row"

@@ -91,7 +91,7 @@ const LoginPage = (props) => {
   return (
     <>
       <Layout>
-        <p className={classes.textHeader}>Meu diário</p>
+        <p className={classes.textHeader}>Login</p>
       </Layout>
       <Grid container className={classes.root}>
         <Grid container direction="column" justify="center" alignItems="center">
