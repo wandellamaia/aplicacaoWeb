@@ -6,17 +6,19 @@ import {
   Link,
   Typography,
   Button,
+  IconButton,
 } from '@material-ui/core';
+import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
 
 import PasswordField from './PasswordField';
 import ButtonCheckbox from './ButtonCheckbox';
 import SuccessMessage from './SuccessMessage';
 import LoginBox from './LoginBox';
-
 import Layout from '../../../shared/components/Layout';
 import Colors from '../../../shared/styles/Colors';
 import * as login from '../control/loginOperation';
 import ErrorMessage from '../../../shared/components/ErrorMessage';
+import history from '../../../shared/history';
 
 import * as utils from '../../../shared/utils';
 
@@ -52,12 +54,11 @@ const useStyles = makeStyles((theme) => ({
   },
   textHeader: {
     color: '#FFFFFF',
-    fontSize: '32px',
+    fontSize: 32,
     fontWeight: 800,
     lineHeight: '1.5',
-    marginLeft: '30px',
-    marginTop: '10px',
-    marginBottom: '0px',
+    marginLeft: 30,
+    marginTop: 5,
     fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
   },
 }));
@@ -91,7 +92,22 @@ const LoginPage = (props) => {
   return (
     <>
       <Layout>
-        <p className={classes.textHeader}>Login</p>
+        <Grid
+          container
+          direction="row"
+          justify="space-between"
+          alignItems="center"
+        >
+          <Grid item>
+            <IconButton
+              onClick={() => {
+                history.push('/');
+              }}
+            >
+              <ArrowBackIosOutlinedIcon aria-label="delete" />
+            </IconButton>
+          </Grid>
+        </Grid>
       </Layout>
       <Grid container className={classes.root}>
         <Grid container direction="column" justify="center" alignItems="center">
@@ -151,7 +167,11 @@ const LoginPage = (props) => {
                 )}
               </Grid>
               <Grid item className={classes.buttonWrapper}>
-                <Button className={classes.buttonRoot} variant="outlined">
+                <Button
+                  className={classes.buttonRoot}
+                  variant="outlined"
+                  onClick={() => history.push('/')}
+                >
                   <span>Voltar</span>
                 </Button>
               </Grid>

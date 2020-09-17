@@ -5,13 +5,14 @@ import Colors from '../styles/Colors';
 
 const useStyles = makeStyles({
   mainHeader: {
-    // height: '64px',
+    marginBottom: 20,
     background: Colors.Primary,
     width: '100%',
     display: 'flex',
     flexWrap: 'wrap',
     boxSizing: 'border-box',
     lineHeight: 1.5,
+    position: 'sticky',
   },
 });
 

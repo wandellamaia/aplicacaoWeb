@@ -8,9 +8,8 @@ export const userExists = (email) => {
 export const login = (email, password) => {
   const user = userExists(email);
   if (user && user.senha === password) {
-    setTimeout(() => {
-      history.push('/Registro');
-    }, 2000);
+    history.push('/Registro');
+    localStorage.setItem('@meuDiario/username', email);
     return true;
   }
   return false;

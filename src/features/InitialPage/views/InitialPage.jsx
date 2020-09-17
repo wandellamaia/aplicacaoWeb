@@ -1,8 +1,17 @@
-import { Typography, makeStyles, Grid, Button, Card } from '@material-ui/core';
+import {
+  Typography,
+  makeStyles,
+  Grid,
+  Divider,
+  Link,
+  Paper,
+} from '@material-ui/core';
 import React from 'react';
 import Menu from './Menu';
 import OutlinedCard from '../../../shared/components/OutlinedCard';
 import Colors from '../../../shared/styles/Colors';
+// import Colors from '../../../shared/styles/Colors';
+// import pequeno from '../../../../public/pequeno_principe.jpg';
 
 const useStyles = makeStyles((theme) => ({
   textHeader: {
@@ -23,9 +32,17 @@ const useStyles = makeStyles((theme) => ({
     color: '#FFFFFF',
   },
   card: {
-    width: '50%',
-    marginTop: 20,
-    marginRight: 20,
+    width: '70%',
+    marginBottom: 20,
+  },
+  image: {
+    paddingLeft: 20,
+    marginTop: 30,
+  },
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: 'auto',
   },
 }));
 
@@ -34,14 +51,15 @@ const StartPage = () => {
   return (
     <>
       <Menu />
-      <Grid container justify="flex-end">
-        <Grid item className={classes.card}>
-          <OutlinedCard>
-            <Grid container justify="flex-end">
-              <Grid item>
-                <Typography variant="h5">
-                  Benefícios em ter um diário
+      <Grid container>
+        <Grid item>
+          <Grid container className={classes.card}>
+            <OutlinedCard>
+              <Grid item xs={6}>
+                <Typography variant="h5" align="center">
+                  A importância de manter um diário
                 </Typography>
+                <Divider />
                 <Typography>
                   <ul>
                     <li>
@@ -65,15 +83,51 @@ const StartPage = () => {
                   refletir sobre tudo com uma nova perspectiva.
                 </Typography>
               </Grid>
-              <Grid item>
+              <Grid item xs={6} className={classes.image}>
                 <img
                   alt="pequeno_principe"
                   src="pequeno_principe.jpg"
-                  height="200"
+                  height="250"
                 />
               </Grid>
-            </Grid>
-          </OutlinedCard>
+            </OutlinedCard>
+          </Grid>
+        </Grid>
+        <Grid item>
+          <Grid container className={classes.card}>
+            <OutlinedCard>
+              <Grid item xs={6}>
+                <Typography variant="h5" align="center">
+                  Benefícios em ter um diário
+                </Typography>
+                <Divider />
+                <Typography>
+                  Pode parecer coisa de criança ou de adolescente, mas manter um
+                  diário na fase adulta tem muitos benefícios para a mente e a
+                  alma.
+                </Typography>
+                <Typography>
+                  Muito mais que apenas registrar o passar dos dias, registrar
+                  os sentimentos pode ser uma forma de expressar ajuda ou de
+                  manter em ordem os pensamentos. Além disso, registrar os
+                  momentos e lições que aprendemos nos ajuda a fixar o
+                  conhecimento adquirido e, ao reler, podemos relembrar cada
+                  momento.
+                </Typography>
+                <Typography variant="h6" align="right">
+                  Por Parque Memorial Japi
+                </Typography>
+                <Typography align="right">
+                  <Link href="https://g1.globo.com/sao-paulo/sorocaba-jundiai/especial-publicitario/parque-memorial-japi/a-natureza-acolhendo-lembrancas/noticia/a-importancia-de-manter-um-diario.ghtml">
+                    Acompanhe no G1
+                  </Link>
+                </Typography>
+              </Grid>
+              <Grid item xs={6} className={classes.image}>
+                <img alt="diario g1" src="diario_g1.jpg" height="250" />
+              </Grid>
+            </OutlinedCard>
+          </Grid>
         </Grid>
       </Grid>
     </>

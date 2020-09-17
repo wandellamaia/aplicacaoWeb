@@ -5,6 +5,7 @@ import {
   Card,
   IconButton,
   Typography,
+  Avatar,
 } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 
@@ -14,15 +15,16 @@ import DescriptionCard from './DescriptionCard';
 import SelectHumor from './SelectHumor';
 import Layout from '../../../shared/components/Layout';
 import CarouselPhotos from './CarouselPhotos';
+import Colors from '../../../shared/styles/Colors';
 
 const useStyles = makeStyles((theme) => ({
   textHeader: {
     color: '#FFFFFF',
-    fontSize: '32px',
+    fontSize: 32,
     fontWeight: 800,
     lineHeight: '1.5',
-    marginLeft: '30px',
-    marginTop: '10px',
+    marginLeft: 30,
+    marginTop: 5,
     fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
   },
   textField: {
@@ -30,13 +32,17 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 0,
     lineHeight: 1.6,
   },
+  avatar: {
+    backgroundColor: Colors.IntermediateSecondary,
+    color: Colors.Secondary,
+  },
 }));
 
 export default function RecordPage() {
   const classes = useStyles();
   return (
     <>
-      <Layout position="static">
+      <Layout>
         <Grid
           container
           direction="row"
@@ -55,7 +61,9 @@ export default function RecordPage() {
           <Grid item>
             <Typography className={classes.textHeader}>Relatos</Typography>
           </Grid>
-          <Grid item />
+          <Grid item>
+            <Avatar classeName={classes.avatar}>N</Avatar>
+          </Grid>
         </Grid>
       </Layout>
       <Grid

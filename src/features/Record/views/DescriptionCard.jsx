@@ -11,7 +11,6 @@ import Colors from '../../../shared/styles/Colors';
 const useStyles = makeStyles((theme) => ({
   textField: {
     width: 430,
-    // height: 'auto',
   },
   title: {
     width: 300,
@@ -56,7 +55,7 @@ export default function OutlinedCard() {
               >
                 <PhotoCamera />
               </IconButton>
-              No máximo 3 imagens
+              No máximo 4 imagens
             </label>
           </CardActions>
         </Grid>

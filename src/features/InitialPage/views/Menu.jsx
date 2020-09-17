@@ -1,6 +1,7 @@
 import { Typography, makeStyles, Grid, Button } from '@material-ui/core';
 import React from 'react';
 import Layout from '../../../shared/components/Layout';
+import history from '../../../shared/history';
 
 const useStyles = makeStyles((theme) => ({
   textHeader: {
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menu: {
     color: '#FFFFFF',
+    paddingTop: 20,
   },
 }));
 
@@ -26,21 +28,25 @@ const Menu = () => {
   const classes = useStyles();
   return (
     <Layout>
-      <Grid container direction="row" justify="flex-start" alignItems="center">
-        <Grid item xs={3} sm={10}>
+      <Grid container spacing={2}>
+        <Grid item xs={9}>
           <Typography className={classes.textHeader}>Meu diário</Typography>
         </Grid>
-        <Grid item>
-          <Button size="small" className={classes.menu}>
+        <Grid item xs={1}>
+          <Button
+            size="small"
+            className={classes.menu}
+            onClick={() => history.push('/Login')}
+          >
             Entrar
           </Button>
         </Grid>
-        <Grid item>
+        <Grid item xs={1}>
           <Button size="small" className={classes.menu}>
             Cadastrar
           </Button>
         </Grid>
-        <Grid item>
+        <Grid item xs={1}>
           <Button size="small" className={classes.menu}>
             Sobre
           </Button>
