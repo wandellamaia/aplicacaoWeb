@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, Paper } from '@material-ui/core';
-import Card from '@material-ui/core/Card';
-
-import CardContent from '@material-ui/core/CardContent';
+import Colors from '../styles/Colors';
 
 const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
+    // color: Colors.Alernative,
   },
 }));
 
@@ -15,7 +14,7 @@ export default function OutlinedCard(props) {
   const classes = useStyles();
   const { children } = props;
   return (
-    <Paper elevation={3} variant="outlined" className={classes.root}>
+    <Paper elevation={3} variant="elevation" className={classes.root}>
       {children}
     </Paper>
   );
