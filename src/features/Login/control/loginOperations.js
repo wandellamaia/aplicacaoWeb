@@ -9,8 +9,9 @@ export const login = (email, password) => {
   const user = userExists(email);
   if (user && user.senha === password) {
     history.push('/Registro');
-    localStorage.setItem('@meuDiario/username', email);
+    localStorage.setItem('email', email);
     return true;
   }
   return false;
 };
+

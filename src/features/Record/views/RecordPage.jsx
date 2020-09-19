@@ -10,12 +10,16 @@ import {
 import TextField from '@material-ui/core/TextField';
 
 import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import HomeIcon from '@material-ui/icons/Home';
+
 import history from '../../../shared/history';
 import DescriptionCard from './DescriptionCard';
 import SelectHumor from './SelectHumor';
 import Layout from '../../../shared/components/Layout';
 import CarouselPhotos from './CarouselPhotos';
 import Colors from '../../../shared/styles/Colors';
+import * as logout from '../control/RecordOperations';
 
 const useStyles = makeStyles((theme) => ({
   textHeader: {
@@ -32,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 0,
     lineHeight: 1.6,
   },
+  exitButton: {},
   avatar: {
     backgroundColor: Colors.IntermediateSecondary,
     color: Colors.Secondary,
@@ -40,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function RecordPage() {
   const classes = useStyles();
+
   return (
     <>
       <Layout>
@@ -50,19 +56,20 @@ export default function RecordPage() {
           alignItems="center"
         >
           <Grid item>
-            <IconButton
-              onClick={() => {
-                history.push('/');
-              }}
-            >
-              <ArrowBackIosOutlinedIcon aria-label="delete" />
-            </IconButton>
-          </Grid>
-          <Grid item>
             <Typography className={classes.textHeader}>Relatos</Typography>
           </Grid>
           <Grid item>
             <Avatar classeName={classes.avatar}>N</Avatar>
+          </Grid>
+          <Grid item>
+            <IconButton onClick={() => logout.clearUser()}>
+              <ExitToAppIcon />
+            </IconButton>
+            <Grid item>
+              <IconButton onClick={() => history.push('/')}>
+                <HomeIcon />
+              </IconButton>
+            </Grid>
           </Grid>
         </Grid>
       </Layout>
@@ -72,7 +79,6 @@ export default function RecordPage() {
         justify="center"
         style={{
           paddingTop: 16,
-          // height: 566,
           height: '100vh',
         }}
       >

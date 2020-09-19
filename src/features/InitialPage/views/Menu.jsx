@@ -1,5 +1,11 @@
-import { Typography, makeStyles, Grid, Button } from '@material-ui/core';
-import React from 'react';
+import {
+  Typography,
+  makeStyles,
+  Grid,
+  Button,
+  Avatar,
+} from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
 import Layout from '../../../shared/components/Layout';
 import history from '../../../shared/history';
 
@@ -13,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 5,
     fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
   },
+  button: {
+    color: '#FFFFFF',
+  },
   textField: {
     paddingTop: 0,
     paddingBottom: 0,
@@ -25,29 +34,47 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Menu = () => {
+  const [disapear, setDisapear] = useState(false);
   const classes = useStyles();
+
+  useEffect(() => {
+    const login = localStorage.getItem('email');
+    if (login) {
+      setDisapear(true);
+    }
+  }, [disapear]);
+
   return (
     <Layout>
-      <Grid container spacing={2}>
-        <Grid item xs={9}>
+      <Grid
+        container
+        direction="row"
+        justify="space-between"
+        alignItems="center"
+      >
+        <Grid item xs>
           <Typography className={classes.textHeader}>Meu diário</Typography>
         </Grid>
-        <Grid item xs={1}>
-          <Button
-            size="small"
-            className={classes.menu}
-            onClick={() => history.push('/Login')}
-          >
-            Entrar
-          </Button>
-        </Grid>
-        <Grid item xs={1}>
-          <Button size="small" className={classes.menu}>
+        <Grid item container xs={3} sm justify="flex-end">
+          {disapear ? (
+            <Grid item>
+              <Avatar classeName={classes.avatar}>w</Avatar>
+            </Grid>
+          ) : (
+            <Button
+              size="small"
+              onClick={() => history.push('/Login')}
+              className={classes.button}
+            >
+              Entrar
+            </Button>
+          )}
+
+          <Button size="small" className={classes.button}>
             Cadastrar
           </Button>
-        </Grid>
-        <Grid item xs={1}>
-          <Button size="small" className={classes.menu}>
+
+          <Button size="small" className={classes.button}>
             Sobre
           </Button>
         </Grid>

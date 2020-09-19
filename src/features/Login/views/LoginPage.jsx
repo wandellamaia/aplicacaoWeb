@@ -16,7 +16,7 @@ import SuccessMessage from './SuccessMessage';
 import LoginBox from './LoginBox';
 import Layout from '../../../shared/components/Layout';
 import Colors from '../../../shared/styles/Colors';
-import * as login from '../control/loginOperation';
+import * as login from '../control/loginOperations';
 import ErrorMessage from '../../../shared/components/ErrorMessage';
 import history from '../../../shared/history';
 
@@ -104,7 +104,7 @@ const LoginPage = (props) => {
                 history.push('/');
               }}
             >
-              <ArrowBackIosOutlinedIcon aria-label="delete" />
+              <ArrowBackIosOutlinedIcon />
             </IconButton>
           </Grid>
         </Grid>

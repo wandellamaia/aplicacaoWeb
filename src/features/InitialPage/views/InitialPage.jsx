@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 5,
     fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
   },
+  formatText: {
+    margin: '50 50',
+  },
 }));
 
 const StartPage = () => {
@@ -31,18 +34,22 @@ const StartPage = () => {
   return (
     <>
       <Menu />
-      <Grid container spacing={3} justify="center">
-        <Grid item style={{ width: '70%' }}>
+      <Grid container justify="center">
+        <Grid
+          item
+          xs={8}
+          style={{ paddingBottom: 20, backgroundColor: 'yellow' }}
+        >
           <OutlinedCard>
-            <Grid container justify="center">
+            <Grid container justify="space-between">
               <Grid item xs={12}>
                 <Typography variant="h5" align="center">
                   A importância de manter um diário
                 </Typography>
                 <Divider variant="middle" />
               </Grid>
-              <Grid item xs={9}>
-                <Typography>
+              <Grid item xs>
+                <Typography align="justify">
                   <ul>
                     <li>
                       Ajudará a ter uma rotina, pois escrever é um ótimo
@@ -58,66 +65,59 @@ const StartPage = () => {
                     </li>
                   </ul>
                 </Typography>
-                <Box display="flex" flexDirection="row" justifyContent="center">
-                  <Typography style={{ marginLeft: 20 }}>
-                    Falamos de autorreflexão porque escrever o seu diário é um
-                    momento só seu, onde você é livre para ser o que é e
-                    escrever. O diário é uma excelente ferramenta para revisitar
-                    o passado e refletir sobre tudo com uma nova perspectiva.
-                  </Typography>
-                  <img
-                    alt="pequeno_principe"
-                    src="pequeno_principe.jpg"
-                    height="150"
-                    width="150"
-                    style={{
-                      paddingBottom: 10,
-                      marginRight: 10,
-                    }}
-                  />
-                </Box>
+              </Grid>
+              <Grid item container justify="center" alignItems="center" xs>
+                <img
+                  alt="pequeno_principe"
+                  src="pequeno_principe.jpg"
+                  width="100"
+                  height="100"
+                />
+              </Grid>
+              <Grid item style={{ paddingLeft: 10, paddingRight: 10 }}>
+                <Typography align="justify">
+                  Falamos de autorreflexão porque escrever o seu diário é um
+                  momento só seu, onde você é livre para ser o que é e escrever.
+                  O diário é uma excelente ferramenta para revisitar o passado e
+                  refletir sobre tudo com uma nova perspectiva.
+                </Typography>
               </Grid>
             </Grid>
           </OutlinedCard>
         </Grid>
-        <Grid item style={{ width: '70%' }}>
+        <Grid item xs={8} justify="center">
           <OutlinedCard>
             <Grid container justify="center">
-              <Grid item xs={12}>
+              <Grid item xs={12} xl>
                 <Typography variant="h5" align="center">
                   Benefícios em ter um diário
                 </Typography>
                 <Divider variant="middle" />
               </Grid>
-              <Grid item xs={9}>
-                <Typography>
+              <Grid item xs={6}>
+                <Typography align="justify">
                   Pode parecer coisa de criança ou de adolescente, mas manter um
                   diário na fase adulta tem muitos benefícios para a mente e a
                   alma.
                 </Typography>
-                <Box display="flex" flexDirection="row">
-                  <Typography>
-                    Muito mais que apenas registrar o passar dos dias, registrar
-                    os sentimentos pode ser uma forma de expressar ajuda ou de
-                    manter em ordem os pensamentos. Além disso, registrar os
-                    momentos e lições que aprendemos nos ajuda a fixar o
-                    conhecimento adquirido e, ao reler, podemos relembrar cada
-                    momento.
-                  </Typography>
-                  <img
-                    alt="diario g1"
-                    src="diario_g1.jpg"
-                    height="200"
-                    width="200"
-                    style={{
-                      float: 'right',
-                      paddingBottom: 10,
-                      marginLeft: 20,
-                    }}
-                  />
-                </Box>
+                <Typography align="justify">
+                  Muito mais que apenas registrar o passar dos dias, registrar
+                  os sentimentos pode ser uma forma de expressar ajuda ou de
+                  manter em ordem os pensamentos. Além disso, registrar os
+                  momentos e lições que aprendemos nos ajuda a fixar o
+                  conhecimento adquirido e, ao reler, podemos relembrar cada
+                  momento.
+                </Typography>
               </Grid>
-              <Grid item xs={9}>
+              <Grid item xs={6}>
+                <img
+                  alt="diario g1"
+                  src="diario_g1.jpg"
+                  width="100"
+                  height="100"
+                />
+              </Grid>
+              <Grid item xs>
                 <Typography variant="h7" align="left">
                   Por Parque Memorial Japi
                 </Typography>

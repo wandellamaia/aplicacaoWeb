@@ -12,7 +12,6 @@ const useStyles = makeStyles({
     flexWrap: 'wrap',
     boxSizing: 'border-box',
     lineHeight: 1.5,
-    position: 'sticky',
   },
 });
 
