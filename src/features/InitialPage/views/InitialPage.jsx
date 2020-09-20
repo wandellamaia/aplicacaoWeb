@@ -30,6 +30,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: Colors.IntermediateSecondary,
     color: Colors.Secondary,
   },
+  image: {
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 10,
+    marginTop: 10,
+  },
 }));
 
 const StartPage = () => {
@@ -41,7 +47,7 @@ const StartPage = () => {
         <Grid item xs={8} style={{ paddingBottom: 20 }}>
           <OutlinedCard>
             <Grid container justify="space-between">
-              <Grid item xs={12}>
+              <Grid item xs={12} className={classes.formatText}>
                 <Typography variant="h5" align="center">
                   A importância de manter um diário
                 </Typography>
@@ -65,7 +71,14 @@ const StartPage = () => {
                   </ul>
                 </Typography>
               </Grid>
-              <Grid item container justify="center" alignItems="center" xs>
+              <Grid
+                item
+                container
+                justify="center"
+                alignItems="center"
+                xs
+                className={classes.image}
+              >
                 <img
                   alt="pequeno_principe"
                   src="pequeno_principe.jpg"
@@ -87,13 +100,13 @@ const StartPage = () => {
         <Grid item xs={8} justify="center">
           <OutlinedCard>
             <Grid container justify="center">
-              <Grid item xs={12} xl className={classes.formatText}>
+              <Grid item xs={12} className={classes.formatText}>
                 <Typography variant="h5" align="center">
                   Benefícios em ter um diário
                 </Typography>
                 <Divider variant="middle" />
               </Grid>
-              <Grid item xs={6} className={classes.formatText}>
+              <Grid item xs className={classes.formatText} sm={8}>
                 <Typography align="justify">
                   Pode parecer coisa de criança ou de adolescente, mas manter um
                   diário na fase adulta tem muitos benefícios para a mente e a
@@ -108,7 +121,15 @@ const StartPage = () => {
                   momento.
                 </Typography>
               </Grid>
-              <Grid item container justify="center" alignItems="center" xs={6}>
+              <Grid
+                item
+                container
+                justify="center"
+                alignItems="center"
+                xs
+                sm
+                className={classes.image}
+              >
                 <img
                   alt="diario g1"
                   src="diario_g1.jpg"

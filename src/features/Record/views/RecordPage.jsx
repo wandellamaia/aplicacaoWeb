@@ -6,7 +6,7 @@ import DescriptionCard from './DescriptionCard';
 import SelectHumor from './SelectHumor';
 
 import CarouselPhotos from './CarouselPhotos';
-import Colors from '../../../shared/styles/Colors';
+
 import RecordMenu from './RecordMenu';
 
 const useStyles = makeStyles((theme) => ({

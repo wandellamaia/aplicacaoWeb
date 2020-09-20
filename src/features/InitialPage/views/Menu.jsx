@@ -9,7 +9,7 @@ import {
 import LibraryBooksOutlinedIcon from '@material-ui/icons/LibraryBooksOutlined';
 import React, { useState, useEffect } from 'react';
 import Colors from '../../../shared/styles/Colors';
-
+import * as utils from '../../../shared/utils/index';
 import Layout from '../../../shared/components/Layout';
 import history from '../../../shared/history';
 
@@ -53,10 +53,12 @@ const Menu = () => {
         <Grid item xs>
           <Typography className={classes.textHeader}>Meu diário</Typography>
         </Grid>
-        <Grid item container xs={3} sm justify="flex-end">
+        <Grid item container xs sm justify="flex-end">
           {disapear ? (
             <>
-              <Avatar className={classes.avatar}>W</Avatar>
+              <Avatar className={classes.avatar}>
+                {utils.initialLetter()}
+              </Avatar>
               <IconButton
                 onClick={() => {
                   history.push('/Registro');

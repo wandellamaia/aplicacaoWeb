@@ -2,22 +2,19 @@ import React from 'react';
 import {
   makeStyles,
   Grid,
-  TextField,
-  Link,
   Typography,
-  Button,
   IconButton,
   Avatar,
 } from '@material-ui/core';
 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HomeIcon from '@material-ui/icons/Home';
-import { deepPurple } from '@material-ui/core/colors';
+
 import Layout from '../../../shared/components/Layout';
 import Colors from '../../../shared/styles/Colors';
 import history from '../../../shared/history';
+import * as utils from '../../../shared/utils/index';
 import * as operations from '../control/RecordOperations';
-
 
 const useStyles = makeStyles((theme) => ({
   textHeader: {
@@ -50,7 +47,7 @@ const RecordMenu = (props) => {
             <Typography className={classes.textHeader}>Meu diário</Typography>
           </Grid>
           <Grid item container xs={3} justify="flex-end">
-            <Avatar className={classes.avatar}>W</Avatar>
+            <Avatar className={classes.avatar}>{utils.initialLetter()}</Avatar>
             <IconButton onClick={() => operations.homePage()}>
               <HomeIcon />
             </IconButton>

@@ -28,14 +28,15 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 70,
   },
   buttonWrapper: {
-    align: 'center',
-    margin: '20px 0',
+    // align: 'center',
+    // margin: '20px 0',
   },
   divExternal: {
     borderStyle: 'solid',
     borderColor: Colors.IntermediateSecondary,
     borderWidth: '1px',
     borderRadius: '3px',
+    width: '70%',
   },
   link: {
     alignItems: 'center',
@@ -45,12 +46,17 @@ const useStyles = makeStyles((theme) => ({
   formWrapper: {
     padding: '10px 40px',
   },
+  form: {
+    marginLeft: 10,
+    marginRigth: 10,
+  },
   textField: {
     width: '100%',
   },
   buttonRoot: {
-    width: '100%',
+    width: '80%',
     color: Colors.IntermediateSecondary,
+    marginBottom: 10,
   },
   textHeader: {
     color: '#FFFFFF',
@@ -110,72 +116,73 @@ const LoginPage = (props) => {
           </Grid>
         </Grid>
       </Layout>
-      <Grid container className={classes.root}>
-        <Grid container direction="column" justify="center" alignItems="center">
-          <Grid item className={classes.divExternal}>
-            <LoginBox title="Login" />
-            <Grid className={classes.formWrapper}>
-              <Grid item xs>
-                <form>
-                  <Grid style={{ marginTop: 15 }}>
-                    <TextField
-                      className={classes.textField}
-                      required
-                      id="standard-required"
-                      label="Email"
-                      onBlur={(e) => {
-                        onEmail(e.target.value);
-                      }}
-                    />
-                    <ErrorMessage
-                      title="Email incorreto"
-                      show={!validateEmail}
-                    />
-                  </Grid>
-                  <Grid style={{ marginTop: 15 }} />
-                  <PasswordField
-                    onShowPassword={() => setShowPassword(!showPassword)}
-                    onPassword={(valuePassword) => setPassword(valuePassword)}
-                    password={password}
-                    showPassword={showPassword}
-                  />
-                  <ErrorMessage
-                    title="Email e/ou senha incorretos"
-                    show={showMessage}
-                  />
-                  <Grid style={{ marginTop: 15 }}>
-                    <ButtonCheckbox
-                      keepConected={keepConected}
-                      handleKeepConected={() => setKeepConected(!keepConected)}
-                    />
-                  </Grid>
-                </form>
-              </Grid>
-              <Grid item className={classes.buttonWrapper}>
-                <Button
-                  variant="outlined"
-                  disabled={!(email && password && validateEmail)}
-                  className={classes.buttonRoot}
-                  onClick={() => handleLoginButton()}
-                >
-                  <span>Entrar</span>
-                </Button>
-                {loginSuccess && (
-                  <SuccessMessage
-                    message="Você está conectado."
-                    keepConected={keepConected}
-                  />
-                )}
-              </Grid>
-              <Grid item className={classes.buttonWrapper}>
-                <Button
-                  className={classes.buttonRoot}
-                  variant="outlined"
-                  onClick={() => history.push('/')}
-                >
-                  <span>Voltar</span>
-                </Button>
-              </Grid>
+      <Grid
+        container
+        direction="column"
+        justify="center"
+        alignItems="center"
+        className={classes.root}
+      >
+        <Grid item className={classes.divExternal} xs sm={4} md={3}>
+          <LoginBox title="Login" />
+          <Grid
+            item
+            container
+            justify="center"
+            alignItems="center"
+            className={classes.form}
+            style={{ marginTop: 15 }}
+            xs={11}
+          >
+            <form>
+              <TextField
+                className={classes.textField}
+                required
+                id="standard-required"
+                label="Email"
+                onBlur={(e) => {
+                  onEmail(e.target.value);
+                }}
+              />
+              <ErrorMessage title="Email incorreto" show={!validateEmail} />
+              <PasswordField
+                onShowPassword={() => setShowPassword(!showPassword)}
+                onPassword={(valuePassword) => setPassword(valuePassword)}
+                password={password}
+                showPassword={showPassword}
+              />
+              <ErrorMessage
+                title="Email e/ou senha incorretos"
+                show={showMessage}
+              />
+            </form>
+            <ButtonCheckbox
+              style={{ marginTop: 15 }}
+              keepConected={keepConected}
+              handleKeepConected={() => setKeepConected(!keepConected)}
+            />
+            <Button
+              variant="outlined"
+              disabled={!(email && password && validateEmail)}
+              className={classes.buttonRoot}
+              onClick={() => handleLoginButton()}
+            >
+              <span>Entrar</span>
+            </Button>
+            {loginSuccess && (
+              <SuccessMessage
+                message="Você está conectado."
+                keepConected={keepConected}
+              />
+            )}
+            <Button
+              className={classes.buttonRoot}
+              variant="outlined"
+              onClick={() => history.push('/')}
+            >
+              <span>Voltar</span>
+            </Button>
+            <Grid item>
               <Typography align="center" className={classes.link}>
                 <Link href="https://www.google.com/">Esqueci minha senha</Link>
               </Typography>
