@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: '1px',
   },
   pTitle: {
-    color: 'black',
+    color: Colors.Alernative,
     fontSize: '32px',
     marginTop: '12px',
     textAlign: 'center',

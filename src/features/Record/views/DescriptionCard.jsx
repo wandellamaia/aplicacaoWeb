@@ -3,6 +3,7 @@ import { makeStyles, TextField, Grid, Input } from '@material-ui/core';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
@@ -10,14 +11,17 @@ import Colors from '../../../shared/styles/Colors';
 
 const useStyles = makeStyles((theme) => ({
   textField: {
-    width: 430,
+    width: 500,
   },
   title: {
-    width: 300,
+    width: '70%',
   },
   button: {
     margin: theme.spacing(1),
     color: Colors.Secondary,
+  },
+  input: {
+    display: 'none',
   },
 }));
 
@@ -30,23 +34,27 @@ export default function OutlinedCard() {
         <Input
           placeholder="Título"
           inputProps={{ 'aria-label': 'description' }}
-          className={classes.title}
         />
       </Grid>
-      <Grid item>
-        <TextField
-          id="outlined-multiline-static"
-          multiline
-          rows={10}
-          placeholder="Conte-me sobre teu dia :)"
+      <Grid item conatiner justify="center" xs>
+        <TextareaAutosize
+          aria-label="minimum height"
           variant="outlined"
-          fullWidth
-          className={classes.textField}
+          rowsMin={10}
+          placeholder="Conte-me sobre teu dia :)"
+          style={{ width: 300 }}
         />
       </Grid>
-      <Grid container item justify="space-between">
-        <Grid item>
+      <Grid item container justify="center">
+        <Grid item xs>
           <CardActions>
+            <input
+              accept="image/*"
+              className={classes.input}
+              id="icon-button-file"
+              type="file"
+              multiple
+            />
             <label htmlFor="icon-button-file">
               <IconButton
                 color="primary"
@@ -55,7 +63,6 @@ export default function OutlinedCard() {
               >
                 <PhotoCamera />
               </IconButton>
-              No máximo 4 imagens
             </label>
           </CardActions>
         </Grid>

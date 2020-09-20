@@ -9,10 +9,9 @@ import {
 } from '@material-ui/core';
 import React from 'react';
 import Menu from './Menu';
+import Footer from './Footer';
 import OutlinedCard from '../../../shared/components/OutlinedCard';
 import Colors from '../../../shared/styles/Colors';
-// import Colors from '../../../shared/styles/Colors';
-// import pequeno from '../../../../public/pequeno_principe.jpg';
 
 const useStyles = makeStyles((theme) => ({
   textHeader: {
@@ -22,10 +21,14 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '1.5',
     marginLeft: 30,
     marginTop: 5,
-    fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
   },
   formatText: {
-    margin: '50 50',
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  avatar: {
+    backgroundColor: Colors.IntermediateSecondary,
+    color: Colors.Secondary,
   },
 }));
 
@@ -35,11 +38,7 @@ const StartPage = () => {
     <>
       <Menu />
       <Grid container justify="center">
-        <Grid
-          item
-          xs={8}
-          style={{ paddingBottom: 20, backgroundColor: 'yellow' }}
-        >
+        <Grid item xs={8} style={{ paddingBottom: 20 }}>
           <OutlinedCard>
             <Grid container justify="space-between">
               <Grid item xs={12}>
@@ -48,7 +47,7 @@ const StartPage = () => {
                 </Typography>
                 <Divider variant="middle" />
               </Grid>
-              <Grid item xs>
+              <Grid item xs className={classes.formatText}>
                 <Typography align="justify">
                   <ul>
                     <li>
@@ -74,7 +73,7 @@ const StartPage = () => {
                   height="100"
                 />
               </Grid>
-              <Grid item style={{ paddingLeft: 10, paddingRight: 10 }}>
+              <Grid item className={classes.formatText}>
                 <Typography align="justify">
                   Falamos de autorreflexão porque escrever o seu diário é um
                   momento só seu, onde você é livre para ser o que é e escrever.
@@ -88,13 +87,13 @@ const StartPage = () => {
         <Grid item xs={8} justify="center">
           <OutlinedCard>
             <Grid container justify="center">
-              <Grid item xs={12} xl>
+              <Grid item xs={12} xl className={classes.formatText}>
                 <Typography variant="h5" align="center">
                   Benefícios em ter um diário
                 </Typography>
                 <Divider variant="middle" />
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={6} className={classes.formatText}>
                 <Typography align="justify">
                   Pode parecer coisa de criança ou de adolescente, mas manter um
                   diário na fase adulta tem muitos benefícios para a mente e a
@@ -109,7 +108,7 @@ const StartPage = () => {
                   momento.
                 </Typography>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item container justify="center" alignItems="center" xs={6}>
                 <img
                   alt="diario g1"
                   src="diario_g1.jpg"
@@ -117,8 +116,12 @@ const StartPage = () => {
                   height="100"
                 />
               </Grid>
-              <Grid item xs>
-                <Typography variant="h7" align="left">
+              <Grid item xs className={classes.formatText}>
+                <Typography
+                  variant="h7"
+                  align="left"
+                  style={{ paddingTop: 20 }}
+                >
                   Por Parque Memorial Japi
                 </Typography>
                 <Typography align="left">
@@ -131,6 +134,7 @@ const StartPage = () => {
           </OutlinedCard>
         </Grid>
       </Grid>
+      <Footer />
     </>
   );
 };

@@ -9,14 +9,15 @@ import {
   IconButton,
   Avatar,
 } from '@material-ui/core';
-import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
 
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import HomeIcon from '@material-ui/icons/Home';
+import { deepPurple } from '@material-ui/core/colors';
 import Layout from '../../../shared/components/Layout';
 import Colors from '../../../shared/styles/Colors';
-
 import history from '../../../shared/history';
+import * as operations from '../control/RecordOperations';
 
-import * as utils from '../../../shared/utils';
 
 const useStyles = makeStyles((theme) => ({
   textHeader: {
@@ -26,10 +27,9 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '1.5',
     marginLeft: 30,
     marginTop: 5,
-    fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
   },
-  orange: {
-    color: Colors.Alernative,
+  avatar: {
+    color: Colors.IntermediateSecondary,
     backgroundColor: Colors.Secondary,
   },
 }));
@@ -46,21 +46,17 @@ const RecordMenu = (props) => {
           justify="space-between"
           alignItems="center"
         >
-          <Grid item>
-            <IconButton
-              onClick={() => {
-                history.push('/');
-              }}
-            >
-              <ArrowBackIosOutlinedIcon aria-label="delete" />
+          <Grid item xs>
+            <Typography className={classes.textHeader}>Meu diário</Typography>
+          </Grid>
+          <Grid item container xs={3} justify="flex-end">
+            <Avatar className={classes.avatar}>W</Avatar>
+            <IconButton onClick={() => operations.homePage()}>
+              <HomeIcon />
             </IconButton>
-          </Grid>
-          <Grid item>
-            <Typography className={classes.textHeader}>Relatos</Typography>
-          </Grid>
-          <Grid item />
-          <Grid item>
-            <Avatar className={classes.orange}>N</Avatar>
+            <IconButton onClick={() => operations.clearUser()}>
+              <ExitToAppIcon />
+            </IconButton>
           </Grid>
         </Grid>
       </Layout>

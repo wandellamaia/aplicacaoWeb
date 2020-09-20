@@ -88,6 +88,7 @@ const LoginPage = (props) => {
       setShowMessage(true);
     }
   };
+  localStorage.setItem('keepConected', keepConected);
 
   return (
     <>

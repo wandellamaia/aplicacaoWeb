@@ -1,25 +1,13 @@
 import React from 'react';
-import {
-  makeStyles,
-  Grid,
-  Card,
-  IconButton,
-  Typography,
-  Avatar,
-} from '@material-ui/core';
+import { makeStyles, Grid, Paper } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 
-import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import HomeIcon from '@material-ui/icons/Home';
-
-import history from '../../../shared/history';
 import DescriptionCard from './DescriptionCard';
 import SelectHumor from './SelectHumor';
-import Layout from '../../../shared/components/Layout';
+
 import CarouselPhotos from './CarouselPhotos';
 import Colors from '../../../shared/styles/Colors';
-import * as logout from '../control/RecordOperations';
+import RecordMenu from './RecordMenu';
 
 const useStyles = makeStyles((theme) => ({
   textHeader: {
@@ -37,10 +25,6 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 1.6,
   },
   exitButton: {},
-  avatar: {
-    backgroundColor: Colors.IntermediateSecondary,
-    color: Colors.Secondary,
-  },
 }));
 
 export default function RecordPage() {
@@ -48,44 +32,17 @@ export default function RecordPage() {
 
   return (
     <>
-      <Layout>
-        <Grid
-          container
-          direction="row"
-          justify="space-between"
-          alignItems="center"
-        >
-          <Grid item>
-            <Typography className={classes.textHeader}>Relatos</Typography>
-          </Grid>
-          <Grid item>
-            <Avatar classeName={classes.avatar}>N</Avatar>
-          </Grid>
-          <Grid item>
-            <IconButton onClick={() => logout.clearUser()}>
-              <ExitToAppIcon />
-            </IconButton>
-            <Grid item>
-              <IconButton onClick={() => history.push('/')}>
-                <HomeIcon />
-              </IconButton>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Layout>
-      <Grid
-        container
-        item
-        justify="center"
-        style={{
-          paddingTop: 16,
-          height: '100vh',
-        }}
-      >
-        <Grid item>
-          <Card>
-            <Grid container item justify="center" style={{ paddingBottom: 16 }}>
-              <Grid item style={{ marginRight: 100, marginLeft: 50 }}>
+      <RecordMenu />
+      <Grid container item justify="center" alignItems="center">
+        <Grid item xs={9}>
+          <Paper elevation="3" variant="elevation">
+            <Grid
+              container
+              justify="center"
+              alignItems="center"
+              style={{ paddingBottom: 16 }}
+            >
+              <Grid item container justify="center" xs={9} sm={3}>
                 <TextField
                   id="datetime-local"
                   type="datetime-local"
@@ -97,7 +54,7 @@ export default function RecordPage() {
                   }}
                 />
               </Grid>
-              <Grid item style={{ marginLeft: 100, marginRight: 50 }}>
+              <Grid item container justify="center" xs={8} sm={4}>
                 <SelectHumor className={classes.textField} />
               </Grid>
             </Grid>
@@ -109,6 +66,7 @@ export default function RecordPage() {
             >
               <Grid
                 item
+                xs
                 style={{
                   marginBottom: 50,
                 }}
@@ -119,7 +77,7 @@ export default function RecordPage() {
                 <DescriptionCard />
               </Grid>
             </Grid>
-          </Card>
+          </Paper>
         </Grid>
       </Grid>
     </>
