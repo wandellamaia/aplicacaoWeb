@@ -11,4 +11,8 @@ export const dataBase = [
     email: 'acs@teste.com',
     senha: 'fimdomundo',
   },
+  {
+    email: 'brayan.castoril@dtidigital.com.br',
+    senha: 'Carro@01',
+  },
 ];

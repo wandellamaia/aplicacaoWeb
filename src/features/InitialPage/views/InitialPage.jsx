@@ -1,14 +1,7 @@
-import {
-  Typography,
-  makeStyles,
-  Grid,
-  Divider,
-  Link,
-  Paper,
-  Box,
-} from '@material-ui/core';
 import React from 'react';
-import Menu from './Menu';
+import { Typography, makeStyles, Grid, Divider, Link } from '@material-ui/core';
+
+import Menu from './InitialMenu';
 import Footer from './Footer';
 import OutlinedCard from '../../../shared/components/OutlinedCard';
 import Colors from '../../../shared/styles/Colors';

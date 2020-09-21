@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import {
   Typography,
   makeStyles,
@@ -6,12 +7,15 @@ import {
   Avatar,
   IconButton,
 } from '@material-ui/core';
+
 import LibraryBooksOutlinedIcon from '@material-ui/icons/LibraryBooksOutlined';
-import React, { useState, useEffect } from 'react';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+
 import Colors from '../../../shared/styles/Colors';
 import * as utils from '../../../shared/utils/index';
 import Layout from '../../../shared/components/Layout';
 import history from '../../../shared/history';
+import * as operations from '../../Record/control/RecordOperations';
 
 const useStyles = makeStyles((theme) => ({
   textHeader: {
@@ -41,7 +45,7 @@ const Menu = () => {
       setDisapear(true);
     }
   }, [disapear]);
-
+  console.log(disapear);
   return (
     <Layout>
       <Grid
@@ -54,7 +58,7 @@ const Menu = () => {
           <Typography className={classes.textHeader}>Meu diário</Typography>
         </Grid>
         <Grid item container xs sm justify="flex-end">
-          {disapear ? (
+          {disapear && localStorage.getItem('email') !== null ? (
             <>
               <Avatar className={classes.avatar}>
                 {utils.initialLetter()}
@@ -65,6 +69,9 @@ const Menu = () => {
                 }}
               >
                 <LibraryBooksOutlinedIcon />
+              </IconButton>
+              <IconButton onClick={() => operations.clearUser()}>
+                <ExitToAppIcon />
               </IconButton>
             </>
           ) : (

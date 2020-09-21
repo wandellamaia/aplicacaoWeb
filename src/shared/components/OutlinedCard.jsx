@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, Paper } from '@material-ui/core';
-import Colors from '../styles/Colors';
+// import Colors from '../styles/Colors';
 
 const useStyles = makeStyles(() => ({
   root: {

@@ -12,7 +12,6 @@ import HomeIcon from '@material-ui/icons/Home';
 
 import Layout from '../../../shared/components/Layout';
 import Colors from '../../../shared/styles/Colors';
-import history from '../../../shared/history';
 import * as utils from '../../../shared/utils/index';
 import * as operations from '../control/RecordOperations';
 
