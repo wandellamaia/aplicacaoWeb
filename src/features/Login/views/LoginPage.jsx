@@ -86,8 +86,8 @@ const LoginPage = (props) => {
     if (!inEmail) setValidateEmail(true);
   };
 
-  const handleLoginButton = () => {
-    if (login.login(email, password)) {
+  const handleLoginButton = async () => {
+    if (await login.login(email, password)) {
       setloginSuccess(true);
       setShowMessage(false);
     } else {

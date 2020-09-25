@@ -45,7 +45,7 @@ const Menu = () => {
       setDisapear(true);
     }
   }, [disapear]);
-  console.log(disapear);
+
   return (
     <Layout>
       <Grid
@@ -57,7 +57,7 @@ const Menu = () => {
         <Grid item xs>
           <Typography className={classes.textHeader}>Meu diário</Typography>
         </Grid>
-        <Grid item container xs sm justify="flex-end">
+        <Grid container xs sm justify="flex-end">
           {disapear && localStorage.getItem('email') !== null ? (
             <>
               <Avatar className={classes.avatar}>
