@@ -40,7 +40,7 @@ const Menu = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    const login = localStorage.getItem('email');
+    const login = sessionStorage.getItem('email');
     if (login) {
       setDisapear(true);
     }
@@ -58,14 +58,14 @@ const Menu = () => {
           <Typography className={classes.textHeader}>Meu diário</Typography>
         </Grid>
         <Grid container xs sm justify="flex-end">
-          {disapear && localStorage.getItem('email') !== null ? (
+          {disapear && sessionStorage.getItem('email') !== null ? (
             <>
               <Avatar className={classes.avatar}>
                 {utils.initialLetter()}
               </Avatar>
               <IconButton
                 onClick={() => {
-                  history.push('/Registro');
+                  history.push('/Storie');
                 }}
               >
                 <LibraryBooksOutlinedIcon />
@@ -85,7 +85,13 @@ const Menu = () => {
               >
                 Entrar
               </Button>
-              <Button size="small" className={classes.button}>
+              <Button
+                size="small"
+                onClick={() => {
+                  return history.push('/Registro');
+                }}
+                className={classes.button}
+              >
                 Cadastrar
               </Button>
             </>

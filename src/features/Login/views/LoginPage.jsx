@@ -88,13 +88,15 @@ const LoginPage = (props) => {
 
   const handleLoginButton = async () => {
     if (await login.login(email, password)) {
+      history.push('/Storie');
+      sessionStorage.setItem('email', email);
       setloginSuccess(true);
       setShowMessage(false);
     } else {
       setShowMessage(true);
     }
   };
-  localStorage.setItem('keepConected', keepConected);
+  sessionStorage.setItem('keepConected', keepConected);
 
   return (
     <>

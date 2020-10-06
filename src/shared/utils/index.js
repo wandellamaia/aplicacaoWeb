@@ -4,7 +4,7 @@ export const validateEmailAddress = (email) => {
 };
 
 export const initialLetter = () => {
-  const letter = localStorage.getItem('email');
+  const letter = sessionStorage.getItem('email');
   if (letter !== null) {
     return letter[0].toUpperCase();
   }
