@@ -9,3 +9,7 @@ export const initialLetter = () => {
     return letter[0].toUpperCase();
   }
 };
+
+export const isFullName = (name) => {
+  return name.split(' ').length < 2;
+};

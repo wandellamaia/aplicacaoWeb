@@ -20,6 +20,10 @@ import Colors from '../../../shared/styles/Colors';
 import TopBox from '../../../shared/components/TopBox';
 import ExternalBox from '../../../shared/components/ExternalBox';
 import * as registerOperations from '../control/RegisterOperations';
+import PasswordField from '../../../shared/components/PasswordField';
+import ErrorMessage from '../../../shared/components/ErrorMessage';
+
+import * as utils from '../../../shared/utils';
 
 const useStyles = makeStyles((theme) => ({
   extern: {
@@ -37,12 +41,12 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: '0.18px',
   },
   textField: {
-    width: '90%',
+    width: '80%',
   },
   formControl: {
     margin: theme.spacing(1),
     minWidth: '80%',
-    paddingTop: 10,
+    paddingTop: 5,
   },
   buttonRoot: {
     width: '80%',
@@ -56,10 +60,39 @@ const RegisterPage = () => {
   const [maritalStatus, setMaritalStatus] = React.useState('');
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
-  const [senha, setSenha] = React.useState('');
-  const [birthday, setBirthday] = React.useState('');
-  const [gender, setGender] = React.useState('f');
 
+  const [birthday, setBirthday] = React.useState('');
+  const [gender, setGender] = React.useState('');
+
+  const [password, setPassword] = React.useState('');
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [nameValidate, setNameValidate] = React.useState(false);
+  const [validateEmail, setValidateEmail] = React.useState(true);
+
+  const onName = (inName) => {
+    setName(inName);
+    if (inName) setNameValidate(utils.isFullName(inName));
+  };
+
+  const onEmail = (inEmail) => {
+    setValidateEmail(utils.validateEmailAddress(inEmail));
+    setEmail(inEmail);
+    if (!inEmail) setValidateEmail(true);
+  };
+
+  const handleRegisterButton = async () => {
+    const response = await registerOperations.register({
+      email,
+      nome: name,
+      senha: password,
+      genero: gender,
+      data_nascimento: birthday,
+      estado_civil: maritalStatus,
+    });
+    if (response.status) {
+      history.push('/Storie');
+    }
+  };
   return (
     <>
       <Layout>
@@ -90,27 +123,30 @@ const RegisterPage = () => {
             alignItems="center"
             justify="center"
             xs
+            style={{ paddingTop: 15 }}
           >
             <TextField
               required
               id="standard-required"
               label="Nome"
               className={classes.textField}
-              onChange={(e) => setName(e.target.value)}
+              onBlur={(e) => onName(e.target.value)}
             />
+            <ErrorMessage title="Nome incorreto" show={nameValidate} />
             <TextField
               required
               id="standard-required"
               label="Email"
               className={classes.textField}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => onEmail(e.target.value)}
             />
+            <ErrorMessage title="Email incorreto" show={!validateEmail} />
           </Grid>
           <Grid
             item
             container
             direction="column"
-            alignItems="flex-start"
+            alignItems="center"
             justify="center"
             xs
             style={{ paddingLeft: 15, paddingTop: 10 }}
@@ -137,63 +173,42 @@ const RegisterPage = () => {
             justify="center"
             alignItems="center"
             xs
-          />
-          <Grid
-            container
-            justify="space-between"
-            alignItems="center"
-            style={{ paddingTop: 10 }}
           >
-            <Grid item style={{ paddingLeft: 10 }} xs={9} sm={7}>
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">
-                  <span style={{ fontSize: 15 }}>Estado civil</span>
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={maritalStatus}
-                  onChange={(e) => setMaritalStatus(e.target.value)}
-                >
-                  <MenuItem value="solteiro">Solteiro(a)</MenuItem>
-                  <MenuItem value="casado">Casado(a)</MenuItem>
-                  <MenuItem value="separado">Separado(a)</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={8} sm>
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">
-                  <span style={{ fontSize: 12 }}>Gênero</span>
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
-                >
-                  <MenuItem value="F">Feminino</MenuItem>
-                  <MenuItem value="M">Masculino</MenuItem>
-                  <MenuItem value="O">Outros</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-          </Grid>
-          <Grid
-            item
-            container
-            direction="column"
-            justify="center"
-            alignItems="center"
-            xs
-            style={{ paddingTop: 5 }}
-          >
-            <TextField
-              required
-              id="standard-required"
-              label="Senha"
-              style={{ width: '70%' }}
-              onChange={(e) => setSenha(e.target.value)}
+            <FormControl className={classes.formControl}>
+              <InputLabel id="demo-simple-select-label">
+                <span style={{ fontSize: 15 }}>Estado civil</span>
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={maritalStatus}
+                onChange={(e) => setMaritalStatus(e.target.value)}
+              >
+                <MenuItem value="solteiro">Solteiro(a)</MenuItem>
+                <MenuItem value="casado">Casado(a)</MenuItem>
+                <MenuItem value="separado">Separado(a)</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl className={classes.formControl}>
+              <InputLabel id="demo-simple-select-label">
+                <span style={{ fontSize: 12 }}>Gênero</span>
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
+              >
+                <MenuItem value="F">Feminino</MenuItem>
+                <MenuItem value="M">Masculino</MenuItem>
+                <MenuItem value="O">Outros</MenuItem>
+              </Select>
+            </FormControl>
+            <PasswordField
+              onShowPassword={() => setShowPassword(!showPassword)}
+              onPassword={(valuePassword) => setPassword(valuePassword)}
+              password={password}
+              showPassword={showPassword}
             />
           </Grid>
           <Grid
@@ -203,21 +218,13 @@ const RegisterPage = () => {
             justify="center"
             alignItems="center"
             xs
-            style={{ paddingTop: 20 }}
+            style={{ paddingTop: 10 }}
           >
             <Button
               variant="outlined"
               className={classes.buttonRoot}
-              onClick={() =>
-                registerOperations.register({
-                  email,
-                  nome: name,
-                  senha,
-                  genero: gender,
-                  data_nascimento: birthday,
-                  estado_civil: maritalStatus,
-                })
-              }
+              disabled={!(password && name && email)}
+              onClick={() => handleRegisterButton()}
             >
               <span>Entrar</span>
             </Button>

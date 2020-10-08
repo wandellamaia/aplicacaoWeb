@@ -133,7 +133,7 @@ const LoginPage = (props) => {
             justify="center"
             alignItems="center"
             className={classes.form}
-            style={{ marginTop: 15 }}
+            style={{ paddingTop: 15 }}
             xs={11}
           >
             <form>
