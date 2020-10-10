@@ -24,7 +24,11 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 0,
     lineHeight: 1.6,
   },
-  exitButton: {},
+  date: {
+    paddingTop: 15,
+    paddingBottom: 0,
+    // lineHeight: 1.6,
+  },
 }));
 
 export default function RecordPage() {
@@ -34,28 +38,40 @@ export default function RecordPage() {
     <>
       <RecordMenu />
       <Grid container item justify="center" alignItems="center">
-        <Grid item xs={9}>
+        <Grid item xs="auto" sm={7}>
           <Paper elevation="3" variant="elevation">
             <Grid
               container
-              justify="center"
-              alignItems="center"
+              justify="space-between"
               style={{ paddingBottom: 16 }}
             >
-              <Grid item container justify="center" xs={9} sm={3}>
+              <Grid
+                item
+                container
+                justify="center"
+                alignItems="center"
+                xs={12}
+                sm={5}
+              >
                 <TextField
-                  id="datetime-local"
-                  type="datetime-local"
-                  defaultValue="2017-05-24T10:30"
-                  style={{ paddingTop: 16 }}
-                  className={classes.textField}
+                  id="date"
+                  type="date"
+                  defaultValue="2020-05-24"
                   InputLabelProps={{
                     shrink: true,
                   }}
+                  className={classes.date}
                 />
               </Grid>
-              <Grid item container justify="center" xs={8} sm={4}>
-                <SelectHumor className={classes.textField} />
+              <Grid
+                item
+                container
+                justify="center"
+                alignItems="center"
+                xs={12}
+                sm={5}
+              >
+                <SelectHumor />
               </Grid>
             </Grid>
             <Grid

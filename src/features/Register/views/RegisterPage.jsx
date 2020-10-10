@@ -41,15 +41,15 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: '0.18px',
   },
   textField: {
-    width: '80%',
+    width: '70%',
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: '80%',
+    width: '70%',
     paddingTop: 5,
   },
   buttonRoot: {
-    width: '80%',
+    width: '70%',
     color: Colors.IntermediateSecondary,
     marginBottom: 10,
   },
@@ -93,6 +93,7 @@ const RegisterPage = () => {
       history.push('/Storie');
     }
   };
+
   return (
     <>
       <Layout>
@@ -115,121 +116,107 @@ const RegisterPage = () => {
       </Layout>
       <ExternalBox>
         <TopBox title="Cadastro" />
-        <form>
-          <Grid
-            item
-            container
-            direction="column"
-            alignItems="center"
-            justify="center"
-            xs
-            style={{ paddingTop: 15 }}
-          >
-            <TextField
-              required
-              id="standard-required"
-              label="Nome"
-              className={classes.textField}
-              onBlur={(e) => onName(e.target.value)}
-            />
-            <ErrorMessage title="Nome incorreto" show={nameValidate} />
-            <TextField
-              required
-              id="standard-required"
-              label="Email"
-              className={classes.textField}
-              onChange={(e) => onEmail(e.target.value)}
-            />
-            <ErrorMessage title="Email incorreto" show={!validateEmail} />
-          </Grid>
-          <Grid
-            item
-            container
-            direction="column"
-            alignItems="center"
-            justify="center"
-            xs
-            style={{ paddingLeft: 15, paddingTop: 10 }}
-          >
-            <form noValidate>
-              <TextField
-                id="date"
-                label="Data de nascimento"
-                type="date"
-                defaultValue="2020-05-24"
-                // className={classes.textField}
-                fullWidth
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={(e) => setBirthday(e.target.value)}
-              />
-            </form>
-          </Grid>
-          <Grid
-            item
-            container
-            direction="column"
-            justify="center"
-            alignItems="center"
-            xs
-          >
-            <FormControl className={classes.formControl}>
-              <InputLabel id="demo-simple-select-label">
-                <span style={{ fontSize: 15 }}>Estado civil</span>
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={maritalStatus}
-                onChange={(e) => setMaritalStatus(e.target.value)}
-              >
-                <MenuItem value="solteiro">Solteiro(a)</MenuItem>
-                <MenuItem value="casado">Casado(a)</MenuItem>
-                <MenuItem value="separado">Separado(a)</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl className={classes.formControl}>
-              <InputLabel id="demo-simple-select-label">
-                <span style={{ fontSize: 12 }}>Gênero</span>
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
-              >
-                <MenuItem value="F">Feminino</MenuItem>
-                <MenuItem value="M">Masculino</MenuItem>
-                <MenuItem value="O">Outros</MenuItem>
-              </Select>
-            </FormControl>
-            <PasswordField
-              onShowPassword={() => setShowPassword(!showPassword)}
-              onPassword={(valuePassword) => setPassword(valuePassword)}
-              password={password}
-              showPassword={showPassword}
-            />
-          </Grid>
-          <Grid
-            item
-            container
-            direction="column"
-            justify="center"
-            alignItems="center"
-            xs
-            style={{ paddingTop: 10 }}
-          >
-            <Button
-              variant="outlined"
-              className={classes.buttonRoot}
-              disabled={!(password && name && email)}
-              onClick={() => handleRegisterButton()}
+        <Grid
+          item
+          container
+          direction="column"
+          alignItems="center"
+          justify="center"
+          xs
+          style={{ paddingTop: 15 }}
+        >
+          <TextField
+            required
+            id="standard-required"
+            label="Nome"
+            className={classes.textField}
+            onBlur={(e) => onName(e.target.value)}
+          />
+          <ErrorMessage title="Nome incorreto" show={nameValidate} />
+          <TextField
+            required
+            id="standard-required"
+            label="Email"
+            className={classes.textField}
+            onChange={(e) => onEmail(e.target.value)}
+          />
+          <ErrorMessage title="Email incorreto" show={!validateEmail} />
+        </Grid>
+        <Grid
+          item
+          container
+          direction="column"
+          justify="center"
+          alignItems="center"
+          xs
+        >
+          <TextField
+            id="date"
+            label="Data de nascimento"
+            type="date"
+            defaultValue="2020-05-24"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={(e) => setBirthday(e.target.value)}
+            style={{ width: '70%' }}
+          />
+
+          <FormControl className={classes.formControl}>
+            <InputLabel id="demo-simple-select-label">
+              <span style={{ fontSize: 15 }}>Estado civil</span>
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={maritalStatus}
+              onChange={(e) => setMaritalStatus(e.target.value)}
             >
-              <span>Entrar</span>
-            </Button>
-          </Grid>
-        </form>
+              <MenuItem value="solteiro">Solteiro(a)</MenuItem>
+              <MenuItem value="casado">Casado(a)</MenuItem>
+              <MenuItem value="separado">Separado(a)</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="demo-simple-select-label">
+              <span style={{ fontSize: 12 }}>Gênero</span>
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+            >
+              <MenuItem value="F">Feminino</MenuItem>
+              <MenuItem value="M">Masculino</MenuItem>
+              <MenuItem value="O">Outros</MenuItem>
+            </Select>
+          </FormControl>
+          <PasswordField
+            onShowPassword={() => setShowPassword(!showPassword)}
+            onPassword={(valuePassword) => setPassword(valuePassword)}
+            password={password}
+            showPassword={showPassword}
+          />
+        </Grid>
+        <Grid
+          item
+          container
+          direction="column"
+          justify="center"
+          alignItems="center"
+          xs
+          style={{ paddingTop: 10 }}
+        >
+          <Button
+            variant="outlined"
+            className={classes.buttonRoot}
+            disabled={!(password && name && email)}
+            onClick={() => handleRegisterButton()}
+          >
+            <span>Entrar</span>
+          </Button>
+        </Grid>
       </ExternalBox>
     </>
   );
