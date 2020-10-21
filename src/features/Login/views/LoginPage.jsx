@@ -88,7 +88,7 @@ const LoginPage = (props) => {
 
   const handleLoginButton = async () => {
     if (await login.login(email, password)) {
-      history.push('/Storie');
+      history.push('/Story');
       sessionStorage.setItem('email', email);
       setloginSuccess(true);
       setShowMessage(false);

@@ -1,5 +1,3 @@
-import history from '../../../shared/history';
-
 import * as registerManager from '../registerManager';
 
 export const register = async (payload) => {

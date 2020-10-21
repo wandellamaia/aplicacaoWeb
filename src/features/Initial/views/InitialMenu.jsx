@@ -15,7 +15,6 @@ import Colors from '../../../shared/styles/Colors';
 import * as utils from '../../../shared/utils/index';
 import Layout from '../../../shared/components/Layout';
 import history from '../../../shared/history';
-import * as operations from '../../Record/control/RecordOperations';
 
 const useStyles = makeStyles((theme) => ({
   textHeader: {
@@ -65,12 +64,12 @@ const Menu = () => {
               </Avatar>
               <IconButton
                 onClick={() => {
-                  history.push('/Storie');
+                  history.push('/Story');
                 }}
               >
                 <LibraryBooksOutlinedIcon />
               </IconButton>
-              <IconButton onClick={() => operations.clearUser()}>
+              <IconButton onClick={() => utils.clearUser()}>
                 <ExitToAppIcon />
               </IconButton>
             </>
