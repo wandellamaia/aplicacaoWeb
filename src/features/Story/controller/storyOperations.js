@@ -9,10 +9,12 @@ export const storyRegister = async (payload) => {
   console.log('Resposta! ->', response);
 };
 
-export const saveDocuments = async (documents, id) => {
-  const request = { id, document: [] };
+export const saveDocuments = async (documents) => {
+  console.log('Chegou ->', documents.images);
+  const request = { id: 1, document: [] };
   const ascyncRes = await Promise.all(
-    documents.map(async (document) => {
+    documents.images.map(async (document) => {
+      console.log('map2 ->', document);
       const fileBase64 = await utils.getBase64(document);
       const response = { fileName: document.name, file: fileBase64 };
       return response;

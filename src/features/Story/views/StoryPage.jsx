@@ -78,6 +78,7 @@ export default function RecordPage(props) {
                 alignItems="center"
                 xs={12}
                 sm={5}
+                style={{ paddingTop: 10 }}
               >
                 <SelectHumor humor={humor} handleHumor={handleHumor} />
               </Grid>
@@ -95,10 +96,12 @@ export default function RecordPage(props) {
                   marginBottom: 50,
                 }}
               >
-                <CarouselPhotos
-                  attachments={attachments}
-                  backgroundColor="grey"
-                />
+                {attachments && (
+                  <CarouselPhotos
+                    attachments={attachments}
+                    backgroundColor="grey"
+                  />
+                )}
               </Grid>
               <Grid item>
                 <DescriptionCard

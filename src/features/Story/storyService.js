@@ -10,7 +10,7 @@ export const sendStory = async (payload, token) => {
 };
 
 export const saveDocument = async (request) => {
-  const url = `${process.env.REACT_APP_NODE_LOCALHOST}/saveDocument`;
+  const url = `${process.env.REACT_APP_NODE_LOCALHOST}/image/register`;
   const body = request;
   return requestService(url, body);
 };

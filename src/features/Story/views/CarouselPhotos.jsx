@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
 const ShowPhotografy = (props) => {
   const { attachments } = props;
   const classes = useStyles();
+  const items = attachments.map((file) => {
+    return <img src={file} className={classes.sliderimg} />;
+  });
   return (
     <Grid
       style={{
@@ -23,14 +26,12 @@ const ShowPhotografy = (props) => {
         height: 100,
       }}
     >
-      <AliceCarousel buttonsDisabled autoPlay autoPlayInterval="3000">
-        {
-          // attachments &&
-          // attachments.map((attachment) => {
-          //   <img src={attachment} alt="teste" className={classes.sliderimg} />;
-          // })
-        }
-      </AliceCarousel>
+      <AliceCarousel
+        buttonsDisabled
+        autoPlay
+        autoPlayInterval="3000"
+        items={items}
+      />
     </Grid>
   );
 };

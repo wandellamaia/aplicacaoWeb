@@ -10,6 +10,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import PropTypes from 'prop-types';
 import Colors from '../../../shared/styles/Colors';
 import * as storyOperations from '../controller/storyOperations';
+import * as utils from '../../../shared/utils';
 
 const useStyles = makeStyles((theme) => ({
   textField: {
@@ -33,37 +34,27 @@ export default function DescriptionCard(props) {
   const [text, setText] = React.useState('');
   const [title, setTitle] = React.useState('');
 
-  const handleChange = useCallback(
-    (event) => {
-      const fileUploaded = Object.values(event.target.files);
-      fileUploaded.forEach((file) => {
-        if (attachments.lenth > 0) {
-          const isDuplicated = attachments.findIndex(
-            (attachmentFile) => attachmentFile.name === file.name
-          );
-          if (isDuplicated !== -1) {
-            return setAttachments((oldAttachments) => [...oldAttachments]);
-          }
-
-          return setAttachments((oldAttachments) => [...oldAttachments, file]);
-        }
-
-        return setAttachments((oldAttachments) => [...oldAttachments, file]);
-      });
-    },
-    [attachments, setAttachments]
-  );
+  const handleChange = async (event) => {
+    const fileUploaded = Object.values(event.target.files);
+    console.log('Teste ->', fileUploaded);
+    const base = await Promise.all(
+      fileUploaded.map((file) => {
+        return utils.getBase64(file);
+      })
+    );
+    return setAttachments(base);
+  };
   console.log('Anexos ->', attachments);
   const handleSave = () => {
-    storyOperations.storyRegister({
-      data_relato: dataRelato,
-      humor,
-      titulo: title,
-      descricao: text,
-    });
-    // storyOperations.saveDocuments({
-    //   images: attachments,
+    // storyOperations.storyRegister({
+    //   data_relato: dataRelato,
+    //   humor,
+    //   titulo: title,
+    //   descricao: text,
     // });
+    storyOperations.saveDocuments({
+      images: attachments,
+    });
   };
 
   return (
@@ -94,7 +85,6 @@ export default function DescriptionCard(props) {
               className={classes.input}
               id="icon-button-file"
               type="file"
-              value={[]}
               onChange={handleChange}
             />
             <label htmlFor="icon-button-file">
