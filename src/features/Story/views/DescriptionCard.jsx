@@ -53,7 +53,7 @@ export default function DescriptionCard(props) {
     //   descricao: text,
     // });
     storyOperations.saveDocuments({
-      images: attachments,
+      attachments,
     });
   };
 

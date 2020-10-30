@@ -17,7 +17,7 @@ const ShowPhotografy = (props) => {
   const { attachments } = props;
   const classes = useStyles();
   const items = attachments.map((file) => {
-    return <img src={file} className={classes.sliderimg} />;
+    return <img src={file} alt={file} className={classes.sliderimg} />;
   });
   return (
     <Grid

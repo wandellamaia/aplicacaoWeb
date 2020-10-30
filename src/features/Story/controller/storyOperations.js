@@ -10,17 +10,23 @@ export const storyRegister = async (payload) => {
 };
 
 export const saveDocuments = async (documents) => {
-  console.log('Chegou ->', documents.images);
-  const request = { id: 1, document: [] };
-  const ascyncRes = await Promise.all(
-    documents.images.map(async (document) => {
-      console.log('map2 ->', document);
-      const fileBase64 = await utils.getBase64(document);
-      const response = { fileName: document.name, file: fileBase64 };
-      return response;
-    })
-  );
-  request.document = ascyncRes;
+  documents = documents.attachments.map((newDocument) => {
+    try {
+      const file = newDocument.split(',');
+      const fileBase64 = file[1];
+      const contentType = file[0]; // .split(':')[1].split(';')[0];
+
+      return {
+        base64: fileBase64,
+        // targetFileName: newDocument.fileName,
+        targetContentType: contentType,
+      };
+    } catch (e) {
+      return null;
+    }
+  });
+
+  const request = { id: 1, documents };
 
   try {
     return await storyManager.saveDocument(request);
