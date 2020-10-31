@@ -1,4 +1,4 @@
-import requestService from '../../shared/utils/requestService';
+import { requestService } from '../../shared/utils/requestService';
 
 export const sendStory = async (payload, token) => {
   const url = `${process.env.REACT_APP_NODE_LOCALHOST}/story/registerStory`;
@@ -6,7 +6,8 @@ export const sendStory = async (payload, token) => {
   const header = {
     Authorization: `Bearer ${token}`,
   };
-  return requestService(url, body, header, true);
+  const response = await requestService(url, body, header, true);
+  return response;
 };
 
 export const saveDocument = async (request) => {

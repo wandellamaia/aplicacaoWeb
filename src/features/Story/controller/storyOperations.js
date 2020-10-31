@@ -1,16 +1,15 @@
 import * as storyManager from '../storyManager';
-import * as utils from '../../../shared/utils/index';
 
 export const storyRegister = async (payload) => {
   const token = sessionStorage.getItem('token');
   payload.token = token;
 
-  const response = await storyManager.storyRegister(payload, token);
-  console.log('Resposta! ->', response);
+  const response = await storyManager.sendStory(payload, token);
+  return response;
 };
 
-export const saveDocuments = async (documents) => {
-  documents = documents.attachments.map((newDocument) => {
+export const saveDocuments = async (photos) => {
+  const documents = photos.documents.map((newDocument) => {
     try {
       const file = newDocument.split(',');
       const fileBase64 = file[1];
@@ -25,8 +24,7 @@ export const saveDocuments = async (documents) => {
       return null;
     }
   });
-
-  const request = { id: 1, documents };
+  const request = { id: photos.id, documents };
 
   try {
     return await storyManager.saveDocument(request);

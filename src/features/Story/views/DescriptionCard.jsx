@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { makeStyles, Grid, Input } from '@material-ui/core';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import CardActions from '@material-ui/core/CardActions';
@@ -36,7 +36,7 @@ export default function DescriptionCard(props) {
 
   const handleChange = async (event) => {
     const fileUploaded = Object.values(event.target.files);
-    console.log('Teste ->', fileUploaded);
+
     const base = await Promise.all(
       fileUploaded.map((file) => {
         return utils.getBase64(file);
@@ -44,17 +44,16 @@ export default function DescriptionCard(props) {
     );
     return setAttachments(base);
   };
-  console.log('Anexos ->', attachments);
-  const handleSave = () => {
-    // storyOperations.storyRegister({
-    //   data_relato: dataRelato,
-    //   humor,
-    //   titulo: title,
-    //   descricao: text,
-    // });
-    storyOperations.saveDocuments({
-      attachments,
+
+  const handleSave = async () => {
+    const id = await storyOperations.storyRegister({
+      data_relato: dataRelato,
+      humor,
+      titulo: title,
+      descricao: text,
     });
+    console.log('Id ->', id);
+    await storyOperations.saveDocuments({ id: id.id, documents: attachments });
   };
 
   return (
@@ -66,7 +65,7 @@ export default function DescriptionCard(props) {
           onBlur={(e) => setTitle(e.target.value)}
         />
       </Grid>
-      <Grid item conatiner justify="center" xs>
+      <Grid item xs>
         <TextareaAutosize
           aria-label="minimum height"
           variant="outlined"
@@ -102,7 +101,6 @@ export default function DescriptionCard(props) {
           <CardActions>
             <Button
               variant="contained"
-              color={Colors.Primary}
               size="small"
               className={classes.button}
               startIcon={<SaveIcon />}

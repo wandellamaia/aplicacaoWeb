@@ -29,7 +29,7 @@ const ShowPhotografy = (props) => {
       <AliceCarousel
         buttonsDisabled
         autoPlay
-        autoPlayInterval="3000"
+        autoPlayInterval={3000}
         items={items}
       />
     </Grid>

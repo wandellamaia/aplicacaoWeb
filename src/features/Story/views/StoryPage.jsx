@@ -46,7 +46,7 @@ export default function RecordPage(props) {
       <RecordMenu />
       <Grid container item justify="center" alignItems="center">
         <Grid item xs="auto" sm={7}>
-          <Paper elevation="3" variant="elevation">
+          <Paper elevation={3} variant="elevation">
             <Grid
               container
               justify="space-between"
