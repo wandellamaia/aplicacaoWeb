@@ -123,7 +123,6 @@ const RegisterPage = () => {
           alignItems="center"
           justify="center"
           xs
-          style={{ paddingTop: 15 }}
         >
           <TextField
             required

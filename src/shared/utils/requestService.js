@@ -11,7 +11,6 @@ export const requestService = async (
       headers,
       pureHeaders,
     });
-    console.log('req ->', response.data);
     return response.data;
   } catch (error) {
     error.message = error;

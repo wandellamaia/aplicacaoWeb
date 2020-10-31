@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles, Grid, Input } from '@material-ui/core';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import CardActions from '@material-ui/core/CardActions';
@@ -10,6 +10,9 @@ import SaveIcon from '@material-ui/icons/Save';
 import PropTypes from 'prop-types';
 import Colors from '../../../shared/styles/Colors';
 import * as storyOperations from '../controller/storyOperations';
+import AlertDialog from './AlertDialog';
+import Loading from '../../../shared/components/LoadingPage';
+
 import * as utils from '../../../shared/utils';
 
 const useStyles = makeStyles((theme) => ({
@@ -28,11 +31,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DescriptionCard(props) {
+const DescriptionCard = (props) => {
   const classes = useStyles();
   const { dataRelato, humor, attachments, setAttachments } = props;
-  const [text, setText] = React.useState('');
-  const [title, setTitle] = React.useState('');
+  const [text, setText] = useState('');
+  const [title, setTitle] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleChange = async (event) => {
     const fileUploaded = Object.values(event.target.files);
@@ -46,14 +51,21 @@ export default function DescriptionCard(props) {
   };
 
   const handleSave = async () => {
+    setLoading(true);
     const id = await storyOperations.storyRegister({
       data_relato: dataRelato,
       humor,
       titulo: title,
       descricao: text,
     });
-    console.log('Id ->', id);
-    await storyOperations.saveDocuments({ id: id.id, documents: attachments });
+    if (attachments.length)
+      await storyOperations.saveDocuments({
+        id: id.id,
+        documents: attachments,
+      });
+
+    setLoading(false);
+    setOpen(true);
   };
 
   return (
@@ -72,7 +84,7 @@ export default function DescriptionCard(props) {
           rowsMin={10}
           placeholder="Conte-me sobre teu dia :)"
           style={{ width: 300 }}
-          onBlur={(e) => setText(e.target.value)}
+          onChange={(e) => setText(e.target.value)}
         />
       </Grid>
       <Grid item container justify="center">
@@ -94,12 +106,14 @@ export default function DescriptionCard(props) {
               >
                 <PhotoCamera />
               </IconButton>
+              <span>máx. 3 imagens</span>
             </label>
           </CardActions>
         </Grid>
         <Grid item>
           <CardActions>
             <Button
+              disabled={!(humor && text && dataRelato)}
               variant="contained"
               size="small"
               className={classes.button}
@@ -110,10 +124,12 @@ export default function DescriptionCard(props) {
             </Button>
           </CardActions>
         </Grid>
+        <Loading open={loading} />
+        <AlertDialog open={open} setOpen={setOpen} />
       </Grid>
     </Grid>
   );
-}
+};
 DescriptionCard.propTypes = {
   dataRelato: PropTypes.string.isRequired,
   humor: PropTypes.string.isRequired,
@@ -124,3 +140,4 @@ DescriptionCard.propTypes = {
 DescriptionCard.defaultProps = {
   attachments: undefined,
 };
+export default DescriptionCard;

@@ -25,9 +25,8 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 1.6,
   },
   date: {
-    paddingTop: 15,
+    paddingTop: 25,
     paddingBottom: 0,
-    // lineHeight: 1.6,
   },
 }));
 
@@ -45,7 +44,7 @@ export default function RecordPage(props) {
     <>
       <RecordMenu />
       <Grid container item justify="center" alignItems="center">
-        <Grid item xs="auto" sm={7}>
+        <Grid item xs="auto" sm={7} style={{ paddingTop: 50 }}>
           <Paper elevation={3} variant="elevation">
             <Grid
               container
@@ -89,20 +88,23 @@ export default function RecordPage(props) {
               justify="center"
               alignItems="center"
             >
-              <Grid
-                item
-                xs
-                style={{
-                  marginBottom: 50,
-                }}
-              >
-                {attachments && (
+              {attachments.length ? (
+                <Grid
+                  item
+                  xs
+                  style={{
+                    marginBottom: 50,
+                  }}
+                >
                   <CarouselPhotos
                     attachments={attachments}
                     backgroundColor="grey"
                   />
-                )}
-              </Grid>
+                </Grid>
+              ) : (
+                <> </>
+              )}
+
               <Grid item>
                 <DescriptionCard
                   dataRelato={date}

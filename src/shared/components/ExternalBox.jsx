@@ -7,7 +7,7 @@ import Colors from '../styles/Colors';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    marginTop: 70,
+    marginTop: 50,
   },
   divExternal: {
     borderStyle: 'solid',

@@ -13,12 +13,13 @@ import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
 import PasswordField from './PasswordField';
 import ButtonCheckbox from './ButtonCheckbox';
 import SuccessMessage from './SuccessMessage';
-import LoginBox from './LoginBox';
 import Layout from '../../../shared/components/Layout';
 import Colors from '../../../shared/styles/Colors';
 import * as login from '../control/loginOperations';
 import ErrorMessage from '../../../shared/components/ErrorMessage';
 import history from '../../../shared/history';
+import TopBox from '../../../shared/components/TopBox';
+import ExternalBox from '../../../shared/components/ExternalBox';
 
 import * as utils from '../../../shared/utils';
 
@@ -26,10 +27,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     marginTop: 70,
-  },
-  buttonWrapper: {
-    // align: 'center',
-    // margin: '20px 0',
   },
   divExternal: {
     borderStyle: 'solid',
@@ -54,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   buttonRoot: {
-    width: '80%',
+    width: '70%',
     color: Colors.IntermediateSecondary,
     marginBottom: 10,
   },
@@ -118,80 +115,72 @@ const LoginPage = (props) => {
           </Grid>
         </Grid>
       </Layout>
-      <Grid
-        container
-        direction="column"
-        justify="center"
-        alignItems="center"
-        className={classes.root}
-      >
-        <Grid item className={classes.divExternal} xs sm={4} md={3}>
-          <LoginBox title="Login" />
-          <Grid
-            item
-            container
-            justify="center"
-            alignItems="center"
-            className={classes.form}
-            style={{ paddingTop: 15 }}
-            xs={11}
-          >
-            <form>
-              <TextField
-                className={classes.textField}
-                required
-                id="standard-required"
-                label="Email"
-                onBlur={(e) => {
-                  onEmail(e.target.value);
-                }}
-              />
-              <ErrorMessage title="Email incorreto" show={!validateEmail} />
-              <PasswordField
-                onShowPassword={() => setShowPassword(!showPassword)}
-                onPassword={(valuePassword) => setPassword(valuePassword)}
-                password={password}
-                showPassword={showPassword}
-              />
-              <ErrorMessage
-                title="Email e/ou senha incorretos"
-                show={showMessage}
-              />
-            </form>
-            <ButtonCheckbox
-              style={{ marginTop: 15 }}
-              keepConected={keepConected}
-              handleKeepConected={() => setKeepConected(!keepConected)}
+      <ExternalBox>
+        <TopBox title="Login" />
+        <Grid
+          item
+          container
+          justify="center"
+          alignItems="center"
+          className={classes.form}
+          style={{ paddingTop: 15 }}
+          xs={11}
+        >
+          <form>
+            <TextField
+              className={classes.textField}
+              required
+              id="standard-required"
+              label="Email"
+              onBlur={(e) => {
+                onEmail(e.target.value);
+              }}
             />
-            <Button
-              variant="outlined"
-              disabled={!(email && password && validateEmail)}
-              className={classes.buttonRoot}
-              onClick={() => handleLoginButton()}
-            >
-              <span>Entrar</span>
-            </Button>
-            {loginSuccess && (
-              <SuccessMessage
-                message="Você está conectado."
-                keepConected={keepConected}
-              />
-            )}
-            <Button
-              className={classes.buttonRoot}
-              variant="outlined"
-              onClick={() => history.push('/')}
-            >
-              <span>Voltar</span>
-            </Button>
-            <Grid item>
-              <Typography align="center" className={classes.link}>
-                <Link href="https://www.google.com/">Esqueci minha senha</Link>
-              </Typography>
-            </Grid>
+            <ErrorMessage title="Email incorreto" show={!validateEmail} />
+            <PasswordField
+              onShowPassword={() => setShowPassword(!showPassword)}
+              onPassword={(valuePassword) => setPassword(valuePassword)}
+              password={password}
+              showPassword={showPassword}
+            />
+            <ErrorMessage
+              title="Email e/ou senha incorretos"
+              show={showMessage}
+            />
+          </form>
+          <ButtonCheckbox
+            style={{ marginTop: 15 }}
+            keepConected={keepConected}
+            handleKeepConected={() => setKeepConected(!keepConected)}
+          />
+          <Button
+            variant="outlined"
+            disabled={!(email && password && validateEmail)}
+            className={classes.buttonRoot}
+            onClick={() => handleLoginButton()}
+          >
+            <span>Entrar</span>
+          </Button>
+          {loginSuccess && (
+            <SuccessMessage
+              message="Você está conectado."
+              keepConected={keepConected}
+            />
+          )}
+          <Button
+            className={classes.buttonRoot}
+            variant="outlined"
+            onClick={() => history.push('/')}
+          >
+            <span>Voltar</span>
+          </Button>
+          <Grid item>
+            <Typography align="center" className={classes.link}>
+              <Link href="https://www.google.com/">Esqueci minha senha</Link>
+            </Typography>
           </Grid>
         </Grid>
-      </Grid>
+      </ExternalBox>
     </>
   );
 };
