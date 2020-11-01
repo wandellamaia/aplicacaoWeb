@@ -1,4 +1,5 @@
 import axios from 'axios';
+import history from '../history';
 
 export const requestService = async (
   url,
@@ -13,6 +14,7 @@ export const requestService = async (
     });
     return response.data;
   } catch (error) {
+    if (error.request.status === 401) history.push('/Login');
     error.message = error;
     throw error;
   }

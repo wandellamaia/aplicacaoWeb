@@ -12,6 +12,7 @@ import Colors from '../../../shared/styles/Colors';
 import * as storyOperations from '../controller/storyOperations';
 import AlertDialog from './AlertDialog';
 import Loading from '../../../shared/components/LoadingPage';
+import SuccessMessage from '../../../shared/components/SuccessMessage';
 
 import * as utils from '../../../shared/utils';
 
@@ -38,6 +39,7 @@ const DescriptionCard = (props) => {
   const [title, setTitle] = useState('');
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState(false);
 
   const handleChange = async (event) => {
     const fileUploaded = Object.values(event.target.files);
@@ -58,14 +60,20 @@ const DescriptionCard = (props) => {
       titulo: title,
       descricao: text,
     });
-    if (attachments.length)
+    console.log('Antes');
+
+    if (attachments.length && id)
       await storyOperations.saveDocuments({
         id: id.id,
         documents: attachments,
       });
 
+    if (id?.message) {
+      setMessage(id.message);
+    } else {
+      setOpen(true);
+    }
     setLoading(false);
-    setOpen(true);
   };
 
   return (
@@ -126,6 +134,7 @@ const DescriptionCard = (props) => {
         </Grid>
         <Loading open={loading} />
         <AlertDialog open={open} setOpen={setOpen} />
+        {message && <SuccessMessage message={message} type="error" />}
       </Grid>
     </Grid>
   );

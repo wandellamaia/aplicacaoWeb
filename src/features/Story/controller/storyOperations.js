@@ -3,9 +3,18 @@ import * as storyManager from '../storyManager';
 export const storyRegister = async (payload) => {
   const token = sessionStorage.getItem('token');
   payload.token = token;
-
-  const response = await storyManager.sendStory(payload, token);
-  return response;
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const response = await storyManager.sendStory(payload, token);
+    return response;
+  } catch (e) {
+    if (e.response.status === 500)
+      return {
+        message:
+          'Ocorreu um erro ao registrar o relato. Por favor, tente novamente. ',
+      };
+    throw e;
+  }
 };
 
 export const saveDocuments = async (photos) => {
@@ -29,6 +38,11 @@ export const saveDocuments = async (photos) => {
   try {
     return await storyManager.saveDocument(request);
   } catch (e) {
+    if (e.response.status === 500)
+      return {
+        message:
+          'Ocorreu um erro ao registrar o relato. Por favor, tente novamente. ',
+      };
     return {
       success: false,
     };
