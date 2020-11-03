@@ -21,8 +21,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 32,
     fontWeight: 800,
     lineHeight: '1.5',
-    marginLeft: 30,
-    marginTop: 5,
+    marginLeft: 250,
   },
   avatar: {
     color: Colors.IntermediateSecondary,
@@ -40,17 +39,25 @@ const RecordMenu = (props) => {
   return (
     <>
       <Layout>
-        <Grid
-          container
-          direction="row"
-          justify="space-between"
-          alignItems="center"
-        >
-          <Grid item xs>
+        <Grid container justify="center" alignItems="center">
+          <Grid
+            item
+            container
+            justify="center"
+            alignItems="center"
+            sm={10}
+            xs={8}
+          >
             <Typography className={classes.textHeader}>Meu diário</Typography>
           </Grid>
-          <Grid item container xs={3} justify="flex-end">
-            <Avatar className={classes.avatar}>{utils.initialLetter()}</Avatar>
+          <Grid item xs={4} sm>
+            <IconButton>
+              {' '}
+              <Avatar className={classes.avatar}>
+                {utils.initialLetter()}
+              </Avatar>
+            </IconButton>
+
             <IconButton onClick={() => utils.homePage()}>
               <HomeIcon />
             </IconButton>

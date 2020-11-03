@@ -59,10 +59,8 @@ const useStyles = makeStyles((theme) => ({
     color: '#FFFFFF',
     fontSize: 32,
     fontWeight: 800,
-    lineHeight: '1.5',
-    marginLeft: 30,
-    marginTop: 5,
-    fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
+    lineHeight: 1.5,
+    paddingRight: 100,
   },
 }));
 
@@ -112,6 +110,16 @@ const LoginPage = (props) => {
             >
               <ArrowBackIosOutlinedIcon />
             </IconButton>
+          </Grid>
+          <Grid
+            item
+            container
+            justify="center"
+            alignItems="center"
+            sm={11}
+            xs={8}
+          >
+            <Typography className={classes.textHeader}>Meu diário</Typography>
           </Grid>
         </Grid>
       </Layout>

@@ -5,9 +5,9 @@ import Colors from '../styles/Colors';
 
 const useStyles = makeStyles({
   mainHeader: {
-    marginBottom: 20,
     background: Colors.Primary,
     width: '100%',
+    height: 65,
     display: 'flex',
     flexWrap: 'wrap',
     boxSizing: 'border-box',

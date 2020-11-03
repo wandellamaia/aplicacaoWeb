@@ -21,9 +21,8 @@ const useStyles = makeStyles((theme) => ({
     color: '#FFFFFF',
     fontSize: 32,
     fontWeight: 800,
-    lineHeight: '1.5',
-    marginLeft: 30,
-    marginTop: 5,
+    lineHeight: 1.5,
+    marginLeft: 200,
   },
   button: {
     color: '#FFFFFF',
@@ -47,21 +46,25 @@ const Menu = () => {
 
   return (
     <Layout>
-      <Grid
-        container
-        direction="row"
-        justify="space-between"
-        alignItems="center"
-      >
-        <Grid item xs>
+      <Grid container justify="center" alignItems="center">
+        <Grid
+          item
+          container
+          justify="center"
+          alignItems="center"
+          sm={10}
+          xs={8}
+        >
           <Typography className={classes.textHeader}>Meu diário</Typography>
         </Grid>
-        <Grid container xs sm justify="flex-end">
-          {disapear && sessionStorage.getItem('email') !== null ? (
-            <>
-              <Avatar className={classes.avatar}>
-                {utils.initialLetter()}
-              </Avatar>
+        {disapear && sessionStorage.getItem('email') !== null ? (
+          <>
+            <Grid item xs={4} sm>
+              <IconButton>
+                <Avatar className={classes.avatar}>
+                  {utils.initialLetter()}
+                </Avatar>
+              </IconButton>
               <IconButton
                 onClick={() => {
                   history.push('/Story');
@@ -72,11 +75,14 @@ const Menu = () => {
               <IconButton onClick={() => utils.clearUser()}>
                 <ExitToAppIcon />
               </IconButton>
-            </>
-          ) : (
-            <>
+            </Grid>
+          </>
+        ) : (
+          <>
+            <Grid item xs sm style={{ paddingLeft: 10, lineHeight: 1.5 }}>
               <Button
                 size="small"
+                variant="outlined"
                 onClick={() => {
                   return history.push('/Login');
                 }}
@@ -84,18 +90,9 @@ const Menu = () => {
               >
                 Entrar
               </Button>
-              <Button
-                size="small"
-                onClick={() => {
-                  return history.push('/Registro');
-                }}
-                className={classes.button}
-              >
-                Cadastrar
-              </Button>
-            </>
-          )}
-        </Grid>
+            </Grid>
+          </>
+        )}
       </Grid>
     </Layout>
   );

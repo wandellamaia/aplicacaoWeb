@@ -15,9 +15,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 32,
     fontWeight: 800,
     lineHeight: '1.5',
-    marginLeft: 30,
-    marginTop: 5,
-    fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
+    marginLeft: 250,
   },
   textField: {
     paddingTop: 0,

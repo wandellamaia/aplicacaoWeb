@@ -60,7 +60,6 @@ const DescriptionCard = (props) => {
       titulo: title,
       descricao: text,
     });
-    console.log('Antes');
 
     if (attachments.length && id)
       await storyOperations.saveDocuments({

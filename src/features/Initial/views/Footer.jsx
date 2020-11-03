@@ -6,7 +6,7 @@ import Footnote from '../../../shared/components/Footnote';
 
 const useStyles = makeStyles((theme) => ({
   textHeader: {
-    fontSize: 22,
+    fontSize: 12,
     lineHeight: '1.5',
   },
   copyright: {
@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
   button: {
     paddingTop: 15,
     marginRight: 15,
-    color: '#FFFFFF',
   },
 }));
 const Footer = () => {
@@ -25,9 +24,10 @@ const Footer = () => {
     <Footnote>
       <Grid container justify="center" style={{ marginLeft: 15 }}>
         <Grid item xs>
-          <Typography className={classes.textHeader}>Meu diário</Typography>
+          <Typography className={classes.textHeader}>Feito com ❤</Typography>
           <Typography className={classes.copyright}>
-            Copyrigth © 2020 Wandella. Todos os direitos reservados.
+            Meu diário - Copyrigth © 2020 Wandella. Todos os direitos
+            reservados.
           </Typography>
         </Grid>
         <Grid item>

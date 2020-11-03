@@ -6,6 +6,7 @@ import {
   IconButton,
   TextField,
   Button,
+  Typography,
 } from '@material-ui/core';
 import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
 
@@ -52,6 +53,13 @@ const useStyles = makeStyles((theme) => ({
     width: '70%',
     color: Colors.IntermediateSecondary,
     marginBottom: 10,
+  },
+  textHeader: {
+    color: '#FFFFFF',
+    fontSize: 32,
+    fontWeight: 800,
+    lineHeight: 1.5,
+    paddingRight: 100,
   },
 }));
 
@@ -111,6 +119,16 @@ const RegisterPage = () => {
             >
               <ArrowBackIosOutlinedIcon />
             </IconButton>
+          </Grid>
+          <Grid
+            item
+            container
+            justify="center"
+            alignItems="center"
+            sm={11}
+            xs={8}
+          >
+            <Typography className={classes.textHeader}>Meu diário</Typography>
           </Grid>
         </Grid>
       </Layout>
