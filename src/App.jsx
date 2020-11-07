@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Login from './features/Login/views/LoginPage';
 import Story from './features/Story/views/StoryPage';
-import StartPage from './features/Initial/views/InitialPage';
+import StartPage from './features/Initial/views/StartPage';
 import Register from './features/Register/views/RegisterPage';
 import history from './shared/history';
 

@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
-import { makeStyles, Grid, Input } from '@material-ui/core';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import CardActions from '@material-ui/core/CardActions';
-import IconButton from '@material-ui/core/IconButton';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import Button from '@material-ui/core/Button';
-import SaveIcon from '@material-ui/icons/Save';
+import {
+  makeStyles,
+  Grid,
+  Input,
+  Tooltip,
+  CardActions,
+  IconButton,
+  Button,
+  TextareaAutosize,
+} from '@material-ui/core';
+import { PhotoCamera, Save } from '@material-ui/icons';
 
 import PropTypes from 'prop-types';
 import Colors from '../../../shared/styles/Colors';
 import * as storyOperations from '../controller/storyOperations';
 import AlertDialog from './AlertDialog';
 import Loading from '../../../shared/components/LoadingPage';
-import SuccessMessage from '../../../shared/components/SuccessMessage';
+import Message from '../../../shared/components/SuccessMessage';
 
 import * as utils from '../../../shared/utils';
 
@@ -42,8 +46,10 @@ const DescriptionCard = (props) => {
   const [message, setMessage] = useState(false);
 
   const handleChange = async (event) => {
-    const fileUploaded = Object.values(event.target.files);
-
+    let fileUploaded = Object.values(event.target.files);
+    if (fileUploaded.length > 3) {
+      fileUploaded = fileUploaded.splice(2, 1);
+    }
     const base = await Promise.all(
       fileUploaded.map((file) => {
         return utils.getBase64(file);
@@ -61,7 +67,7 @@ const DescriptionCard = (props) => {
       descricao: text,
     });
 
-    if (attachments.length && id)
+    if (attachments.length <= 3 && id)
       await storyOperations.saveDocuments({
         id: id.id,
         documents: attachments,
@@ -105,17 +111,25 @@ const DescriptionCard = (props) => {
               type="file"
               onChange={handleChange}
             />
-            <label htmlFor="icon-button-file">
-              <IconButton
-                color="primary"
-                aria-label="upload picture"
-                component="span"
-              >
-                <PhotoCamera />
-              </IconButton>
-              <span>máx. 3 imagens</span>
-            </label>
+            <Tooltip title="Fotos">
+              <label htmlFor="icon-button-file">
+                <IconButton
+                  color="primary"
+                  aria-label="upload picture"
+                  component="span"
+                >
+                  <PhotoCamera />
+                </IconButton>
+                <span>máx. 3 imagens</span>
+              </label>
+            </Tooltip>
           </CardActions>
+          {attachments.length > 3 && (
+            <Message
+              message="Só é permitido enviar 3 fotografias"
+              type="warning"
+            />
+          )}
         </Grid>
         <Grid item>
           <CardActions>
@@ -124,7 +138,7 @@ const DescriptionCard = (props) => {
               variant="contained"
               size="small"
               className={classes.button}
-              startIcon={<SaveIcon />}
+              startIcon={<Save />}
               onClick={() => handleSave()}
             >
               Save
@@ -133,7 +147,7 @@ const DescriptionCard = (props) => {
         </Grid>
         <Loading open={loading} />
         <AlertDialog open={open} setOpen={setOpen} />
-        {message && <SuccessMessage message={message} type="error" />}
+        {message && <Message message={message} type="error" />}
       </Grid>
     </Grid>
   );

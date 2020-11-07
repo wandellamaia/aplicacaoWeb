@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   makeStyles,
   Grid,
@@ -20,6 +20,7 @@ import ErrorMessage from '../../../shared/components/ErrorMessage';
 import history from '../../../shared/history';
 import TopBox from '../../../shared/components/TopBox';
 import ExternalBox from '../../../shared/components/ExternalBox';
+import Loading from '../../../shared/components/LoadingPage';
 
 import * as utils from '../../../shared/utils';
 
@@ -67,13 +68,14 @@ const useStyles = makeStyles((theme) => ({
 const LoginPage = (props) => {
   const classes = useStyles();
 
-  const [password, setPassword] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [showPassword, setShowPassword] = React.useState(false);
-  const [validateEmail, setValidateEmail] = React.useState(true);
-  const [showMessage, setShowMessage] = React.useState(false);
-  const [loginSuccess, setloginSuccess] = React.useState(false);
-  const [keepConected, setKeepConected] = React.useState(true);
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [validateEmail, setValidateEmail] = useState(true);
+  const [showMessage, setShowMessage] = useState(false);
+  const [loginSuccess, setloginSuccess] = useState(false);
+  const [keepConected, setKeepConected] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const onEmail = (inEmail) => {
     setValidateEmail(utils.validateEmailAddress(inEmail));
@@ -82,6 +84,7 @@ const LoginPage = (props) => {
   };
 
   const handleLoginButton = async () => {
+    setOpen(true);
     if (await login.login(email, password)) {
       history.push('/Story');
       sessionStorage.setItem('email', email);
@@ -90,6 +93,7 @@ const LoginPage = (props) => {
     } else {
       setShowMessage(true);
     }
+    setOpen(false);
   };
   sessionStorage.setItem('keepConected', keepConected);
 
@@ -188,6 +192,7 @@ const LoginPage = (props) => {
             </Typography>
           </Grid>
         </Grid>
+        <Loading open={open} />
       </ExternalBox>
     </>
   );

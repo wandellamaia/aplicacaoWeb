@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import {
   makeStyles,
   Grid,
@@ -7,15 +6,16 @@ import {
   TextField,
   Button,
   Typography,
+  FormControl,
+  InputLabel,
+  MenuItem,
 } from '@material-ui/core';
 import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
 
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 
 import Layout from '../../../shared/components/Layout';
+import Loading from '../../../shared/components/LoadingPage';
 import history from '../../../shared/history';
 import Colors from '../../../shared/styles/Colors';
 import TopBox from '../../../shared/components/TopBox';
@@ -66,16 +66,17 @@ const useStyles = makeStyles((theme) => ({
 const RegisterPage = () => {
   const classes = useStyles();
   const [maritalStatus, setMaritalStatus] = React.useState('');
-  const [name, setName] = React.useState('');
-  const [email, setEmail] = React.useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
 
-  const [birthday, setBirthday] = React.useState('');
-  const [gender, setGender] = React.useState('');
+  const [birthday, setBirthday] = useState('');
+  const [gender, setGender] = useState('');
 
   const [password, setPassword] = React.useState('');
   const [showPassword, setShowPassword] = React.useState(false);
   const [nameValidate, setNameValidate] = React.useState(false);
   const [validateEmail, setValidateEmail] = React.useState(true);
+  const [open, setOpen] = useState(false);
 
   const onName = (inName) => {
     setName(inName);
@@ -89,6 +90,7 @@ const RegisterPage = () => {
   };
 
   const handleRegisterButton = async () => {
+    setOpen(true);
     const response = await registerOperations.register({
       email,
       nome: name,
@@ -100,6 +102,7 @@ const RegisterPage = () => {
     if (response.status) {
       history.push('/Story');
     }
+    setOpen(false);
   };
 
   return (
@@ -234,6 +237,7 @@ const RegisterPage = () => {
             <span>Entrar</span>
           </Button>
         </Grid>
+        <Loading open={open} />
       </ExternalBox>
     </>
   );
