@@ -1,9 +1,10 @@
-import AliceCarousel from 'react-alice-carousel';
-import 'react-alice-carousel/lib/alice-carousel.css';
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Grid, makeStyles } from '@material-ui/core';
+
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
 
 const useStyles = makeStyles((theme) => ({
   sliderimg: {
@@ -13,12 +14,14 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: 5,
   },
 }));
-const ShowPhotografy = (props) => {
+const Carousel = (props) => {
   const { attachments } = props;
   const classes = useStyles();
+
   const items = attachments.map((file) => {
     return <img src={file} alt={file} className={classes.sliderimg} />;
   });
+
   return (
     <Grid
       style={{
@@ -36,12 +39,12 @@ const ShowPhotografy = (props) => {
   );
 };
 
-export default ShowPhotografy;
+export default Carousel;
 
-ShowPhotografy.propTypes = {
+Carousel.propTypes = {
   attachments: PropTypes.arrayOf(PropTypes.object),
 };
 
-ShowPhotografy.defaultProps = {
+Carousel.defaultProps = {
   attachments: undefined,
 };

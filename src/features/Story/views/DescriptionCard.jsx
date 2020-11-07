@@ -3,22 +3,21 @@ import {
   makeStyles,
   Grid,
   Input,
-  Tooltip,
   CardActions,
-  IconButton,
   Button,
   TextareaAutosize,
 } from '@material-ui/core';
-import { PhotoCamera, Save } from '@material-ui/icons';
+import { Save } from '@material-ui/icons';
 
 import PropTypes from 'prop-types';
 import Colors from '../../../shared/styles/Colors';
 import * as storyOperations from '../controller/storyOperations';
 import AlertDialog from './AlertDialog';
+import PhotosDialog from './PhotosDialog';
 import Loading from '../../../shared/components/LoadingPage';
 import Message from '../../../shared/components/SuccessMessage';
 
-import * as utils from '../../../shared/utils';
+// import * as utils from '../../../shared/utils';
 
 const useStyles = makeStyles((theme) => ({
   textField: {
@@ -38,25 +37,19 @@ const useStyles = makeStyles((theme) => ({
 
 const DescriptionCard = (props) => {
   const classes = useStyles();
-  const { dataRelato, humor, attachments, setAttachments } = props;
+  const {
+    dataRelato,
+    humor,
+    attachments,
+    setAttachments,
+    base,
+    setBase,
+  } = props;
   const [text, setText] = useState('');
   const [title, setTitle] = useState('');
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState(false);
-
-  const handleChange = async (event) => {
-    let fileUploaded = Object.values(event.target.files);
-    if (fileUploaded.length > 3) {
-      fileUploaded = fileUploaded.splice(2, 1);
-    }
-    const base = await Promise.all(
-      fileUploaded.map((file) => {
-        return utils.getBase64(file);
-      })
-    );
-    return setAttachments(base);
-  };
 
   const handleSave = async () => {
     setLoading(true);
@@ -67,10 +60,10 @@ const DescriptionCard = (props) => {
       descricao: text,
     });
 
-    if (attachments.length <= 3 && id)
+    if (base.length <= 3 && id)
       await storyOperations.saveDocuments({
         id: id.id,
-        documents: attachments,
+        documents: base,
       });
 
     if (id?.message) {
@@ -103,26 +96,12 @@ const DescriptionCard = (props) => {
       <Grid item container justify="center">
         <Grid item xs>
           <CardActions>
-            <input
-              accept="image/*"
-              multiple
-              className={classes.input}
-              id="icon-button-file"
-              type="file"
-              onChange={handleChange}
+            <PhotosDialog
+              setAttachments={setAttachments}
+              attachments={attachments}
+              base={base}
+              setBase={setBase}
             />
-            <Tooltip title="Fotos">
-              <label htmlFor="icon-button-file">
-                <IconButton
-                  color="primary"
-                  aria-label="upload picture"
-                  component="span"
-                >
-                  <PhotoCamera />
-                </IconButton>
-                <span>máx. 3 imagens</span>
-              </label>
-            </Tooltip>
           </CardActions>
           {attachments.length > 3 && (
             <Message
@@ -135,13 +114,13 @@ const DescriptionCard = (props) => {
           <CardActions>
             <Button
               disabled={!(humor && text && dataRelato)}
-              variant="contained"
+              variant="outlined"
               size="small"
               className={classes.button}
               startIcon={<Save />}
               onClick={() => handleSave()}
             >
-              Save
+              Salvar
             </Button>
           </CardActions>
         </Grid>
@@ -157,9 +136,12 @@ DescriptionCard.propTypes = {
   humor: PropTypes.string.isRequired,
   setAttachments: PropTypes.func.isRequired,
   attachments: PropTypes.arrayOf(PropTypes.object),
+  base: PropTypes.arrayOf(PropTypes.object),
+  setBase: PropTypes.func.isRequired,
 };
 
 DescriptionCard.defaultProps = {
   attachments: undefined,
+  base: undefined,
 };
 export default DescriptionCard;

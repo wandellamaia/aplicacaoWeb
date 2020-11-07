@@ -41,3 +41,18 @@ export const getBase64 = (file) => {
     reader.onerror = (error) => reject(error);
   });
 };
+
+export const changeByte = (bytes) => {
+  const kilobyte = 1024;
+
+  if (bytes >= kilobyte ** 3) {
+    return `${parseFloat(bytes / kilobyte ** 3).toFixed(2)}GB`;
+  }
+  if (bytes >= kilobyte ** 2) {
+    return `${parseFloat(bytes / kilobyte ** 2).toFixed(2)}MB`;
+  }
+  if (bytes >= 1024) {
+    return `${parseFloat(bytes / kilobyte).toFixed(2)}KB`;
+  }
+  return `${bytes}B`;
+};

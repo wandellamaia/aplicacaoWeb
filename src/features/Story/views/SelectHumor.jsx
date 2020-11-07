@@ -1,5 +1,5 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -9,11 +9,9 @@ import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles((theme) => ({
   button: {
-    // display: 'block',
     marginTop: theme.spacing(2),
   },
   formControl: {
-    // margin: theme.spacing(1),
     minWidth: 120,
   },
   select: {
@@ -21,15 +19,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SelectHumor(props) {
+const SelectHumor = (props) => {
   const classes = useStyles();
   const { humor, handleHumor } = props;
-  // const [humor, setHumor] = React.useState('');
-  const [open, setOpen] = React.useState(false);
 
-  // const handleChange = (event) => {
-  //   setHumor(event.target.value);
-  // };
+  const [open, setOpen] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
@@ -66,8 +60,9 @@ export default function SelectHumor(props) {
       </Select>
     </FormControl>
   );
-}
-// SelectHumor.protoTypes = {
-//   handleHumor: PropTypes.func.isRequired,
-//   humor: PropTypes.string.isRequired,
-// };
+};
+export default SelectHumor;
+SelectHumor.protoTypes = {
+  handleHumor: PropTypes.func.isRequired,
+  humor: PropTypes.string.isRequired,
+};

@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import DescriptionCard from './DescriptionCard';
 import SelectHumor from './SelectHumor';
 
-import CarouselPhotos from './CarouselPhotos';
+import CarouselPhotos from './Carousel';
 
 import RecordMenu from './StoryMenu';
 
@@ -28,12 +28,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecordPage(props) {
+const RecordPage = (props) => {
   const classes = useStyles();
 
-  const [date, setDate] = React.useState('');
-  const [humor, setHumor] = React.useState('');
+  const [date, setDate] = useState('');
+  const [humor, setHumor] = useState('');
   const [attachments, setAttachments] = useState([]);
+  const [base, setBase] = useState([]);
 
   const handleHumor = (event) => {
     setHumor(event.target.value);
@@ -86,7 +87,7 @@ export default function RecordPage(props) {
               justify="center"
               alignItems="center"
             >
-              {attachments.length ? (
+              {base.length > 0 && (
                 <Grid
                   item
                   xs
@@ -94,21 +95,17 @@ export default function RecordPage(props) {
                     marginBottom: 50,
                   }}
                 >
-                  <CarouselPhotos
-                    attachments={attachments}
-                    backgroundColor="grey"
-                  />
+                  <CarouselPhotos attachments={base} backgroundColor="grey" />
                 </Grid>
-              ) : (
-                <> </>
               )}
-
               <Grid item>
                 <DescriptionCard
                   dataRelato={date}
                   humor={humor}
                   setAttachments={setAttachments}
                   attachments={attachments}
+                  base={base}
+                  setBase={setBase}
                 />
               </Grid>
             </Grid>
@@ -117,4 +114,6 @@ export default function RecordPage(props) {
       </Grid>
     </>
   );
-}
+};
+
+export default RecordPage;
