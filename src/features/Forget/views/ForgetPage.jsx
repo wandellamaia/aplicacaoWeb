@@ -9,12 +9,11 @@ import {
 } from '@material-ui/core';
 import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
 
-import PasswordField from './PasswordField';
-import ButtonCheckbox from './ButtonCheckbox';
-import SuccessMessage from './SuccessMessage';
+import PasswordField from '../../../shared/components/PasswordField';
+import SuccessMessage from '../../../shared/components/SuccessMessage';
 import Layout from '../../../shared/components/Layout';
 import Colors from '../../../shared/styles/Colors';
-import * as login from '../control/loginOperations';
+import * as forget from '../control/forgetOperations';
 import ErrorMessage from '../../../shared/components/ErrorMessage';
 import history from '../../../shared/history';
 import TopBox from '../../../shared/components/TopBox';
@@ -53,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   buttonRoot: {
     width: '65%',
     // backgroundColor: Colors.IntermediateSecondary,
-    marginBottom: 10,
+    marginBottom: 15,
   },
   textHeader: {
     color: '#FFFFFF',
@@ -72,8 +71,7 @@ const LoginPage = (props) => {
   const [showPassword, setShowPassword] = useState(false);
   const [validateEmail, setValidateEmail] = useState(true);
   const [showMessage, setShowMessage] = useState(false);
-  const [loginSuccess, setloginSuccess] = useState(false);
-  const [keepConected, setKeepConected] = useState(true);
+  const [showMessageSenha, setShowMessageSenha] = useState(false);
   const [open, setOpen] = useState(false);
 
   const onEmail = (inEmail) => {
@@ -82,19 +80,25 @@ const LoginPage = (props) => {
     if (!inEmail) setValidateEmail(true);
   };
 
-  const handleLoginButton = async () => {
+  const handleEmailButton = async () => {
     setOpen(true);
-    if (await login.login(email, password)) {
-      history.push('/Story');
-      sessionStorage.setItem('email', email);
-      setloginSuccess(true);
-      setShowMessage(false);
-    } else {
+    if (!(await forget.getEmail(email))) {
       setShowMessage(true);
     }
     setOpen(false);
   };
-  sessionStorage.setItem('keepConected', keepConected);
+
+  const handleSenhaButton = async () => {
+    setOpen(true);
+    if (await forget.setPassword(email, password)) {
+      setShowMessageSenha(true);
+      sessionStorage.removeItem('email');
+    }
+    setOpen(false);
+    setTimeout(() => {
+      history.push('/');
+    }, 4000);
+  };
 
   return (
     <>
@@ -127,7 +131,7 @@ const LoginPage = (props) => {
         </Grid>
       </Layout>
       <ExternalBox>
-        <TopBox title="Login" />
+        <TopBox title="Esqueceu sua senha?" />
         <Grid
           item
           container
@@ -148,53 +152,54 @@ const LoginPage = (props) => {
               }}
             />
             <ErrorMessage title="Email incorreto" show={!validateEmail} />
-            <PasswordField
-              onShowPassword={() => setShowPassword(!showPassword)}
-              onPassword={(valuePassword) => setPassword(valuePassword)}
-              password={password}
-              showPassword={showPassword}
-            />
+            {sessionStorage.getItem('email') && (
+              <PasswordField
+                onShowPassword={() => setShowPassword(!showPassword)}
+                onPassword={(valuePassword) => setPassword(valuePassword)}
+                password={password}
+                showPassword={showPassword}
+              />
+            )}
             <ErrorMessage
-              title="Email e/ou senha incorretos"
+              title="Não foi possivel fazer alteração"
               show={showMessage}
             />
           </form>
-          <ButtonCheckbox
-            style={{ marginTop: 15 }}
-            keepConected={keepConected}
-            handleKeepConected={() => setKeepConected(!keepConected)}
-          />
-          <Button
-            variant="outlined"
-            disabled={!(email && password && validateEmail)}
-            className={classes.buttonRoot}
-            onClick={() => handleLoginButton()}
-          >
-            <span>Entrar</span>
-          </Button>
-          {loginSuccess && (
-            <SuccessMessage
-              message="Você está conectado."
-              keepConected={keepConected}
-            />
-          )}
-          <Button
-            className={classes.buttonRoot}
-            variant="outlined"
-            onClick={() => history.push('/')}
-          >
-            <span>Voltar</span>
-          </Button>
-          <Grid item style={{ marginBottom: 15 }}>
+          {sessionStorage.getItem('email') ? (
             <Button
+              variant="outlined"
               color="primary"
-              onClick={() => history.push('/EsqueciSenha')}
+              disabled={!(password && email && validateEmail)}
+              className={classes.buttonRoot}
+              onClick={() => handleSenhaButton()}
             >
-              Esqueci minha senha
+              <span>Enviar</span>
             </Button>
-          </Grid>
+          ) : (
+            <Button
+              variant="outlined"
+              color="primary"
+              disabled={!(email && validateEmail)}
+              className={classes.buttonRoot}
+              onClick={() => handleEmailButton()}
+            >
+              <span>Enviar</span>
+            </Button>
+          )}
         </Grid>
         <Loading open={open} />
+        {showMessage && (
+          <SuccessMessage
+            type="warning"
+            message="Usuário não foi encontrado."
+          />
+        )}
+        {showMessageSenha && (
+          <SuccessMessage
+            type="info"
+            message="Sua senha foi alterada com sucesso"
+          />
+        )}
       </ExternalBox>
     </>
   );

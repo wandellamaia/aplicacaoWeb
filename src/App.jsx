@@ -6,6 +6,8 @@ import Login from './features/Login/views/LoginPage';
 import Story from './features/Story/views/StoryPage';
 import StartPage from './features/Initial/views/StartPage';
 import Register from './features/Register/views/RegisterPage';
+import About from './features/About/views/AboutPage';
+import Forget from './features/Forget/views/ForgetPage';
 import history from './shared/history';
 
 export default function Routes() {
@@ -18,6 +20,8 @@ export default function Routes() {
           <Route path="/Login" exact component={Login} />
           <Route path="/Story" component={Story} />
           <Route path="/Registro" component={Register} />
+          <Route path="/Sobre" component={About} />
+          <Route path="/EsqueciSenha" component={Forget} />
         </Switch>
       </Router>
     </>

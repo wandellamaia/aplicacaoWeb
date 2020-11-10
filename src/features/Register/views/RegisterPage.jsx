@@ -174,7 +174,7 @@ const RegisterPage = () => {
             id="date"
             label="Data de nascimento"
             type="date"
-            defaultValue="2020-05-24"
+            // defaultValue={new Date()}
             InputLabelProps={{
               shrink: true,
             }}
@@ -212,12 +212,15 @@ const RegisterPage = () => {
               <MenuItem value="O">Outros</MenuItem>
             </Select>
           </FormControl>
-          <PasswordField
-            onShowPassword={() => setShowPassword(!showPassword)}
-            onPassword={(valuePassword) => setPassword(valuePassword)}
-            password={password}
-            showPassword={showPassword}
-          />
+          <FormControl className={classes.formControl}>
+            {' '}
+            <PasswordField
+              onShowPassword={() => setShowPassword(!showPassword)}
+              onPassword={(valuePassword) => setPassword(valuePassword)}
+              password={password}
+              showPassword={showPassword}
+            />
+          </FormControl>
         </Grid>
         <Grid
           item

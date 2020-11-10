@@ -1,8 +1,7 @@
-import { Typography, makeStyles, Grid, Button } from '@material-ui/core';
-
 import React from 'react';
-
-import Footnote from '../../../shared/components/Footnote';
+import { Typography, makeStyles, Grid, Button } from '@material-ui/core';
+import history from '../../../shared/history';
+import Footnote from '../../../shared/components/FootNote';
 
 const useStyles = makeStyles((theme) => ({
   textHeader: {
@@ -31,7 +30,11 @@ const Footer = () => {
           </Typography>
         </Grid>
         <Grid item>
-          <Button size="small" className={classes.button}>
+          <Button
+            size="small"
+            className={classes.button}
+            onClick={() => history.push('/Sobre')}
+          >
             <Typography className={classes.copyright}>Sobre</Typography>
           </Button>
         </Grid>

@@ -15,7 +15,7 @@ import Colors from '../../../shared/styles/Colors';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    height: 600,
+    minHeight: 650,
     background: 'url(../girassol.jpg)',
   },
   textHeader: {
@@ -80,19 +80,22 @@ const StartPage = () => {
               Escreva um diário e tenha onde recordar suas memórias.
             </Typography>
           </Grid>
-          <Grid item>
-            <Button
-              variant="outlined"
-              color="primary"
-              size="large"
-              onClick={() => {
-                history.push('/Registro');
-              }}
-              className={classes.button}
-            >
-              Cadastrar
-            </Button>
-          </Grid>
+          {!sessionStorage.getItem('token') && (
+            <Grid item>
+              <Button
+                variant="outlined"
+                disabled={sessionStorage.getItem('token')}
+                color="primary"
+                size="large"
+                onClick={() => {
+                  history.push('/Registro');
+                }}
+                className={classes.button}
+              >
+                Cadastrar
+              </Button>
+            </Grid>
+          )}
         </Grid>
         <Footer />
       </Grid>

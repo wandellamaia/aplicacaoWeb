@@ -61,7 +61,7 @@ const RecordPage = (props) => {
                 <TextField
                   id="date"
                   type="date"
-                  defaultValue="2020-05-24"
+                  // defaultValue="2020-05-24"
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -106,6 +106,8 @@ const RecordPage = (props) => {
                   attachments={attachments}
                   base={base}
                   setBase={setBase}
+                  setHumor={setHumor}
+                  setDate={setDate}
                 />
               </Grid>
             </Grid>

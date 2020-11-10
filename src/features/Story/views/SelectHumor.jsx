@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SelectHumor = (props) => {
   const classes = useStyles();
-  const { humor, handleHumor } = props;
+  const { humor, handleHumor} = props;
 
   const [open, setOpen] = useState(false);
 
@@ -65,4 +65,5 @@ export default SelectHumor;
 SelectHumor.protoTypes = {
   handleHumor: PropTypes.func.isRequired,
   humor: PropTypes.string.isRequired,
+  setHumor: PropTypes.func.isRequired,
 };

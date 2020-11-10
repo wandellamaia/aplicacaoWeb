@@ -40,6 +40,8 @@ const DescriptionCard = (props) => {
   const {
     dataRelato,
     humor,
+    setHumor,
+    setDate,
     attachments,
     setAttachments,
     base,
@@ -51,6 +53,13 @@ const DescriptionCard = (props) => {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState(false);
 
+  const clear = () => {
+    setText('');
+    setTitle('');
+    setHumor('');
+    setDate('');
+  };
+
   const handleSave = async () => {
     setLoading(true);
     const id = await storyOperations.storyRegister({
@@ -60,7 +69,7 @@ const DescriptionCard = (props) => {
       descricao: text,
     });
 
-    if (base.length <= 3 && id)
+    if (base.length > 0 && base.length <= 3 && id)
       await storyOperations.saveDocuments({
         id: id.id,
         documents: base,
@@ -71,6 +80,7 @@ const DescriptionCard = (props) => {
     } else {
       setOpen(true);
     }
+    clear();
     setLoading(false);
   };
 
@@ -134,6 +144,8 @@ const DescriptionCard = (props) => {
 DescriptionCard.propTypes = {
   dataRelato: PropTypes.string.isRequired,
   humor: PropTypes.string.isRequired,
+  setHumor: PropTypes.func.isRequired,
+  setDate: PropTypes.func.isRequired,
   setAttachments: PropTypes.func.isRequired,
   attachments: PropTypes.arrayOf(PropTypes.object),
   base: PropTypes.arrayOf(PropTypes.object),
