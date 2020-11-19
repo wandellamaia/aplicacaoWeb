@@ -95,7 +95,7 @@ const AboutPage = () => {
           >
             Derivado de um projeto de mentoria, este programa "Meu diário"
             <br /> tem o objetivo de conhecer e aprofundar os conhecimentos{' '}
-            <br /> das tecnologias reactJS e nodeJs.
+            <br /> das tecnologias reactJS e nodeJS.
           </Typography>
           <Grid item>
             <IconButton href="https://web.facebook.com/wandella.maia">

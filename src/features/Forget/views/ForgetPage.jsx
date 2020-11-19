@@ -97,7 +97,7 @@ const LoginPage = (props) => {
     setOpen(false);
     setTimeout(() => {
       history.push('/');
-    }, 4000);
+    }, 3000);
   };
 
   return (

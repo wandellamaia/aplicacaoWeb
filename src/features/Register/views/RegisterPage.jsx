@@ -20,6 +20,7 @@ import history from '../../../shared/history';
 import Colors from '../../../shared/styles/Colors';
 import TopBox from '../../../shared/components/TopBox';
 import ExternalBox from '../../../shared/components/ExternalBox';
+import SuccessMessage from '../../../shared/components/SuccessMessage';
 import * as registerOperations from '../control/registerOperations';
 import PasswordField from '../../../shared/components/PasswordField';
 import ErrorMessage from '../../../shared/components/ErrorMessage';
@@ -77,6 +78,7 @@ const RegisterPage = () => {
   const [nameValidate, setNameValidate] = React.useState(false);
   const [validateEmail, setValidateEmail] = React.useState(true);
   const [open, setOpen] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
 
   const onName = (inName) => {
     setName(inName);
@@ -101,6 +103,11 @@ const RegisterPage = () => {
     });
     if (response.status) {
       history.push('/Story');
+    } else {
+      setShowMessage(true);
+      setTimeout(() => {
+        history.push('/Login');
+      }, 3000);
     }
     setOpen(false);
   };
@@ -241,6 +248,9 @@ const RegisterPage = () => {
           </Button>
         </Grid>
         <Loading open={open} />
+        {showMessage && (
+          <SuccessMessage type="warning" message="Usuário já existe." />
+        )}
       </ExternalBox>
     </>
   );

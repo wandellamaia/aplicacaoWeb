@@ -8,6 +8,11 @@ export const register = async (payload) => {
     sessionStorage.setItem('email', payload.email);
     return response;
   } catch (e) {
+    if (e.response.status === 500)
+      return {
+        status: false,
+        message: 'Usuário já existe. ',
+      };
     throw e;
   }
 };
