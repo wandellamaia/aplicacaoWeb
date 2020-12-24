@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, Box } from '@material-ui/core';
+import { makeStyles, Grid } from '@material-ui/core';
 import Colors from '../styles/Colors';
 
 const useStyles = makeStyles({
@@ -20,7 +20,7 @@ const Layout = (props) => {
   const classes = useStyles();
   return (
     <>
-      <Box className={classes.mainHeader}>{children}</Box>
+      <Grid className={classes.mainHeader}>{children}</Grid>
     </>
   );
 };
