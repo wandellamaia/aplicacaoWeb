@@ -11,13 +11,36 @@ const storiesPage = () => {
   return (
     <>
       <Layout />
-      <Grid
-        container
-        direction="column"
-        alignItems="center"
-        style={{ marginTop: 10 }}
-      >
-        <Grid item xs={11}>
+      <Grid container justify="space-between" style={{ marginTop: 10 }}>
+        <Grid
+          item
+          container
+          justify="center"
+          alignItems="center"
+          xs={7}
+          style={{ backgroundColor: 'pink' }}
+        >
+          <Grid item xs={8}>
+            <OutlinedCard>
+              <Grid item container direction="column" alignItems="center">
+                <Grid item container justify="center">
+                  <Grid item style={{ marginRight: 10 }}>
+                    <Typography>{mock[0].data.dia}</Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography>{mock[0].relato.humor}</Typography>
+                  </Grid>
+                </Grid>
+                <Grid item>
+                  <Typography>{mock[0].relato.titulo}</Typography>
+                  <Typography>{mock[0].relato.texto}</Typography>
+                  <Typography>{mock[0].fotos[0]}</Typography>
+                </Grid>
+              </Grid>
+            </OutlinedCard>
+          </Grid>
+        </Grid>
+        <Grid item xs={5} style={{ backgroundColor: 'blueviolet' }}>
           <Grid item style={{ marginBottom: 10 }}>
             <OutlinedCard>
               <Grid item container justify="space-between" alignItems="center">
