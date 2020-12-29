@@ -1,12 +1,31 @@
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, Avatar, TextareaAutosize } from '@material-ui/core';
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import TuneIcon from '@material-ui/icons/Tune';
 import Layout from '../../../shared/components/Layout';
 import OutlinedCard from '../../../shared/components/OutlinedCard';
 import mock from '../../../shared/utils/mockStories';
 import Colors from '../../../shared/styles/Colors';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  small: {
+    width: theme.spacing(3),
+    height: theme.spacing(3),
+  },
+  large: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+  },
+}));
 const storiesPage = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const classes = useStyles();
   const colors = ['pink', 'yellow', 'powderblue', 'coral', 'green'];
   return (
     <>
@@ -23,17 +42,34 @@ const storiesPage = () => {
           <Grid item xs={8}>
             <OutlinedCard>
               <Grid item container direction="column" alignItems="center">
-                <Grid item container justify="center">
-                  <Grid item style={{ marginRight: 10 }}>
-                    <Typography>{mock[0].data.dia}</Typography>
+                <Grid
+                  item
+                  container
+                  justify="flex-start"
+                  spacing={1}
+                  style={{ marginLeft: 10, marginTop: 10 }}
+                >
+                  <Grid item>
+                    <Avatar alt="emoji2" src="feliz.png" />
                   </Grid>
                   <Grid item>
-                    <Typography>{mock[0].relato.humor}</Typography>
+                    <Typography variant="h6">{mock[0].relato.humor}</Typography>
+                    <Typography variant="caption">
+                      {mock[0].data.dia}/{mock[0].data.mes}/{mock[0].data.ano}
+                    </Typography>
                   </Grid>
                 </Grid>
                 <Grid item>
-                  <Typography>{mock[0].relato.titulo}</Typography>
-                  <Typography>{mock[0].relato.texto}</Typography>
+                  <Typography variant="h5" align="center">
+                    {mock[0].relato.titulo}
+                  </Typography>
+                  <TextareaAutosize
+                    disabled
+                    rowsMin={3}
+                    variant="outlined"
+                    style={{ width: 300 }}
+                    value={mock[0].relato.texto}
+                  />
                   <Typography>{mock[0].fotos[0]}</Typography>
                 </Grid>
               </Grid>
@@ -94,7 +130,7 @@ const storiesPage = () => {
                         container
                         justify="center"
                         alignItems="center"
-                        xs={4}
+                        xs={8}
                       >
                         <Typography>{story.fotos[0]}</Typography>
                       </Grid>
