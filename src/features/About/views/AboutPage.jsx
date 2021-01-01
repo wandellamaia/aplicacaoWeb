@@ -93,7 +93,7 @@ const AboutPage = () => {
             gutterBottom
             style={{ paddingTop: 10 }}
           >
-            Derivado de um projeto de mentoria, este programa "Meu diário"
+            Derivado de um projeto de mentoria, este programa Meu diário
             <br /> tem o objetivo de conhecer e aprofundar os conhecimentos{' '}
             <br /> das tecnologias reactJS e nodeJS.
           </Typography>

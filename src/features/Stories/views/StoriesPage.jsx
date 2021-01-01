@@ -1,4 +1,4 @@
-import { Grid, Typography, Avatar, TextareaAutosize } from '@material-ui/core';
+import { Grid, Typography, Avatar, ButtonBase } from '@material-ui/core';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TuneIcon from '@material-ui/icons/Tune';
@@ -6,6 +6,7 @@ import Layout from '../../../shared/components/Layout';
 import OutlinedCard from '../../../shared/components/OutlinedCard';
 import mock from '../../../shared/utils/mockStories';
 import Colors from '../../../shared/styles/Colors';
+import ImageGridList from './ImageGridList';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,24 +32,17 @@ const storiesPage = () => {
     <>
       <Layout />
       <Grid container justify="space-between" style={{ marginTop: 10 }}>
-        <Grid
-          item
-          container
-          justify="center"
-          alignItems="center"
-          xs={7}
-          style={{ backgroundColor: 'pink' }}
-        >
-          <Grid item xs={8}>
+        <Grid item container justify="center" alignItems="center" xs={7}>
+          <Grid item xs={7}>
             <OutlinedCard>
-              <Grid item container direction="column" alignItems="center">
-                <Grid
-                  item
-                  container
-                  justify="flex-start"
-                  spacing={1}
-                  style={{ marginLeft: 10, marginTop: 10 }}
-                >
+              <Grid
+                item
+                container
+                direction="column"
+                alignItems="center"
+                style={{ margin: 10 }}
+              >
+                <Grid item container spacing={1}>
                   <Grid item>
                     <Avatar alt="emoji2" src="feliz.png" />
                   </Grid>
@@ -63,20 +57,16 @@ const storiesPage = () => {
                   <Typography variant="h5" align="center">
                     {mock[0].relato.titulo}
                   </Typography>
-                  <TextareaAutosize
-                    disabled
-                    rowsMin={3}
-                    variant="outlined"
-                    style={{ width: 300 }}
-                    value={mock[0].relato.texto}
-                  />
-                  <Typography>{mock[0].fotos[0]}</Typography>
+                  <Typography align="center">{mock[0].relato.texto}</Typography>
+                </Grid>
+                <Grid item>
+                  <ImageGridList />
                 </Grid>
               </Grid>
             </OutlinedCard>
           </Grid>
         </Grid>
-        <Grid item xs={5} style={{ backgroundColor: 'blueviolet' }}>
+        <Grid item xs={5}>
           <Grid item style={{ marginBottom: 10 }}>
             <OutlinedCard>
               <Grid item container justify="space-between" alignItems="center">
@@ -104,12 +94,17 @@ const storiesPage = () => {
                   style={{ marginBottom: 10 }}
                 >
                   <OutlinedCard>
-                    <Grid item container justify="space-between">
-                      <Grid
-                        item
-                        style={{ backgroundColor: colors[index % 5] }}
-                        xs={1}
-                      />
+                    <Grid
+                      item
+                      style={{ backgroundColor: colors[index % 5] }}
+                      xs={1}
+                    />
+                    <Grid
+                      item
+                      container
+                      justify="space-between"
+                      alignItems="center"
+                    >
                       <Grid
                         item
                         container
@@ -122,17 +117,22 @@ const storiesPage = () => {
                         <Typography>{story.data.mes}</Typography>
                       </Grid>
                       <Grid item container direction="column" xs={3}>
-                        <Typography>{story.relato.titulo}</Typography>
-                        <Typography>{story.relato.texto}</Typography>
+                        <Typography variant="button" align="center">
+                          {story.relato.titulo}
+                        </Typography>
+                        <Typography variant="body2" align="justify">
+                          {story.relato.texto}
+                        </Typography>
                       </Grid>
-                      <Grid
-                        item
-                        container
-                        justify="center"
-                        alignItems="center"
-                        xs={8}
-                      >
-                        <Typography>{story.fotos[0]}</Typography>
+                      <Grid item xs={2}>
+                        <ButtonBase>
+                          <img
+                            src="wmo2.jpg"
+                            alt="wmo2"
+                            width="100"
+                            height="100"
+                          />
+                        </ButtonBase>
                       </Grid>
                       <Grid />
                     </Grid>
