@@ -11,7 +11,21 @@ const data = [
       texto: 'O arrz tava gostoso demais',
       humor: 'Feliz',
     },
-    fotos: ['Fotos'],
+    fotos: [
+      {
+        img: 'wmo2.jpg',
+        title: 'Image',
+        author: 'author',
+        cols: 0,
+      },
+      {
+        img: 'pequeno_principe.jpg',
+        title: 'Image',
+        author: 'author',
+        cols: 0,
+      },
+      { img: 'girassol.jpg', title: 'Image', author: 'author', cols: 1 },
+    ],
   },
   {
     data: {
@@ -62,7 +76,7 @@ const data = [
     relato: {
       titulo: 'Então é natal, uma festa crista',
       texto: 'Jesus vai nascer amanha',
-      humor: 'Feliz'
+      humor: 'Feliz',
     },
     fotos: ['Fotos'],
   },
