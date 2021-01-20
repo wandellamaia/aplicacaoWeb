@@ -24,13 +24,14 @@ const useStyles = makeStyles((theme) => ({
 
 const Item = (Props) => {
   // const classes = useStyles();
-  const { story, index, option, setOption } = Props;
-
+  const { story, index, setOption, option } = Props;
+  console.log('Historia -', story);
   const colors = ['pink', 'yellow', 'powderblue', 'coral', 'green'];
+
   return (
     <Card style={{ marginBottom: 10 }}>
       <CardActionArea onClick={() => setOption(story)}>
-        <Grid container key={story.relato.titulo}>
+        <Grid container key={story?.relato.titulo}>
           <Grid
             item
             style={{
@@ -46,7 +47,7 @@ const Item = (Props) => {
             </Grid>
             <Grid item container direction="column" xs={3}>
               <Typography variant="button" align="center">
-                {story.relato.titulo}
+                {story?.relato.titulo}
               </Typography>
             </Grid>
             <Grid item xs={2}>
@@ -61,9 +62,10 @@ const Item = (Props) => {
 };
 export default Item;
 Item.propTypes = {
-  story: PropTypes.array,
-  index: PropTypes.number.isRequired,
+  // story: PropTypes.object,
+  // index: PropTypes.number.isRequired,
+  // option: PropTypes.object,
 };
 Item.defaultProps = {
-  // story: [],
+  // story: undefined,
 };

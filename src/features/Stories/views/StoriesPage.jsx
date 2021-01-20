@@ -25,10 +25,11 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(7),
   },
 }));
-const storiesPage = () => {
+const StoriesPage = () => {
   // const classes = useStyles();
   const colors = ['pink', 'yellow', 'powderblue', 'coral', 'green'];
-  const [option, setOption] = React.useState([]);
+  const [option, setOption] = useState({});
+  console.log('componente principal ->', option);
   return (
     <>
       <Layout />
@@ -82,4 +83,4 @@ const storiesPage = () => {
     </>
   );
 };
-export default storiesPage;
+export default StoriesPage;
