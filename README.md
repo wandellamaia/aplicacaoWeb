@@ -6,7 +6,7 @@
 <h1>Execução</h1>
 <ol>
   <li>Faça o git clone deste projeto em seu computador.</li>
-  <li>Abrir o projeto e uma IDE.</li>
+  <li>Abrir o projeto em uma IDE.</li>
   <li>Executar o comando yarn start no terminal</li>
 </ol>
 
