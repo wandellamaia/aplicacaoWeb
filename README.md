@@ -1,5 +1,7 @@
-<h1>Meu diário</h1>
-<p>O projeto Meu diário é um trabalho que oferece ao usuário a oportunidade de registrar seus momentos com fotografias e descrição de momentos incríveis que o mesmo queira contar.</p>
+<h1>Sobre o projeto</h1>
+<p>O projeto Meu diário é um trabalho que oferece ao usuário a oportunidade de registrar seus momentos com fotografias e descrição de momentos incríveis. O mesmo oefere ao usuário a experiência de registrar a data do registro, o humor daquele dia para que possa ficar registrado o momento.
+  
+ Vale lembrar que este projeto é fruto de uma mentoria onde o objetivo foi aprender a tecnologia em reactJS.</p>
 
 <h1>Execução</h1>
 <ol>
