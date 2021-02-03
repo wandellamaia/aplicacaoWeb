@@ -7,3 +7,8 @@
   <li>Abrir o projeto e uma IDE.</li>
   <li>Executar o comando yarn start no terminal</li>
 </ol>
+
+<h1>Contact</h1>
+<p>Wandella - wandellamaia@yahoo.com.br</p>
+
+Project Link: https://github.com/wandellamaia/aplicacaoWeb
