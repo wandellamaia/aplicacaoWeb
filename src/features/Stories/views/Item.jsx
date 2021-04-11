@@ -1,31 +1,9 @@
-import React, { useState } from 'react';
-import {
-  makeStyles,
-  Grid,
-  Typography,
-  CardActionArea,
-  Card,
-} from '@material-ui/core';
-import PropTypes from 'prop-types';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
-  },
-  gridList: {
-    // width: 500,
-    // height: 450,
-  },
-}));
+import React from 'react';
+import { Grid, Typography, CardActionArea, Card } from '@material-ui/core';
 
 const Item = (Props) => {
-  // const classes = useStyles();
-  const { story, index, setOption, option } = Props;
-  console.log('Historia -', story);
+  const { story, index, setOption } = Props;
+  // console.log('Historia -', story);
   const colors = ['pink', 'yellow', 'powderblue', 'coral', 'green'];
 
   return (
@@ -61,11 +39,3 @@ const Item = (Props) => {
   );
 };
 export default Item;
-Item.propTypes = {
-  // story: PropTypes.object,
-  // index: PropTypes.number.isRequired,
-  // option: PropTypes.object,
-};
-Item.defaultProps = {
-  // story: undefined,
-};

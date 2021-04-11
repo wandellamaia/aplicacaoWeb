@@ -21,7 +21,7 @@ import Colors from '../../../shared/styles/Colors';
 import TopBox from '../../../shared/components/TopBox';
 import ExternalBox from '../../../shared/components/ExternalBox';
 import SuccessMessage from '../../../shared/components/SuccessMessage';
-import * as registerOperations from '../control/registerOperations';
+import * as registerOperations from '../control/RegisterOperations';
 import PasswordField from '../../../shared/components/PasswordField';
 import ErrorMessage from '../../../shared/components/ErrorMessage';
 

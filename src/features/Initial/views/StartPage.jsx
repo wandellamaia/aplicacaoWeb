@@ -71,7 +71,7 @@ const StartPage = () => {
             </Typography>
             <Divider
               variant="middle"
-              light="false"
+              light
               style={{ backgroundColor: Colors.Alernative }}
             />
           </Grid>

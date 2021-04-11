@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Grid, Typography, Card, CardActionArea } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import TuneIcon from '@material-ui/icons/Tune';
 import Layout from '../../../shared/components/Layout';
 import OutlinedCard from '../../../shared/components/OutlinedCard';
@@ -9,25 +8,7 @@ import Colors from '../../../shared/styles/Colors';
 import ItemSelected from './ItemSelected';
 import Item from './Item';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-  small: {
-    width: theme.spacing(3),
-    height: theme.spacing(3),
-  },
-  large: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
-  },
-}));
 const StoriesPage = () => {
-  // const classes = useStyles();
-  const colors = ['pink', 'yellow', 'powderblue', 'coral', 'green'];
   const [option, setOption] = useState({});
   console.log('componente principal ->', option);
   return (
@@ -75,6 +56,7 @@ const StoriesPage = () => {
                   index={index}
                   option={option}
                   setOption={setOption}
+                  key={story.relato.titulo+index.toString()}
                 />
               );
             })}

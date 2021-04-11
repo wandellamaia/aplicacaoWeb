@@ -9,7 +9,6 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 // import Card from '../../../shared/components/OutlinedCard';
-import Foot from '../../../shared/components/FootNote';
 import Layout from '../../../shared/components/Layout';
 import history from '../../../shared/history';
 
@@ -114,7 +113,6 @@ const AboutPage = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Foot />
     </>
   );
 };

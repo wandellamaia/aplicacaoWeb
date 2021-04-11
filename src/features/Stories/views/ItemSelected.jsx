@@ -1,27 +1,11 @@
-import React, { useState } from 'react';
-import { makeStyles, Grid, Typography, Avatar } from '@material-ui/core';
+import React from 'react';
+import { Grid, Typography, Avatar } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import ImageGridList from './ImageGridList';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
-  },
-  gridList: {
-    // width: 500,
-    // height: 450,
-  },
-}));
-
 const ItemSelected = (Props) => {
-  // const classes = useStyles();
   const { option } = Props;
-  console.log('Item selecionando', option);
-  const colors = ['pink', 'yellow', 'powderblue', 'coral', 'green'];
+
   return (
     <Grid
       item
@@ -48,15 +32,15 @@ const ItemSelected = (Props) => {
         <Typography align="center">{option?.relato?.texto}</Typography>
       </Grid>
       <Grid item>
-        <ImageGridList fotos={option?.fotos} />
+        <ImageGridList fotos={option?.fotos}/>
       </Grid>
     </Grid>
   );
 };
 export default ItemSelected;
-ItemSelected.propTypes = {
-  // option: PropTypes.array,
+ItemSelected.prototype = {
+  option: PropTypes.objectOf(PropTypes.any),
 };
 ItemSelected.defaultProps = {
-  // option: [],
+  option: {},
 };

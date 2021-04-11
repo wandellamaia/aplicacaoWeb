@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, makeStyles, Grid, Button } from '@material-ui/core';
 import history from '../../../shared/history';
-import Footnote from '../../../shared/components/FootNote';
+import Footnote from '../../../shared/components/Footnote';
 
 const useStyles = makeStyles((theme) => ({
   textHeader: {
